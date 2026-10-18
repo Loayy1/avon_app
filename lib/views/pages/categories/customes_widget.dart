@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'model.dart';
+import '../../../features/categories/data/models/category_model.dart';
 
 class Items extends StatelessWidget {
   final CategoryModel model;
@@ -13,7 +12,7 @@ class Items extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ListTile(
           onTap: () {},
           shape: RoundedRectangleBorder(
@@ -21,16 +20,29 @@ class Items extends StatelessWidget {
           ),
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              model.imageUrl,
-              height: 69,
-              width: 60,
-              fit: BoxFit.fill,
-            ),
+            child: model.imageUrl.isNotEmpty
+                ? Image.network(
+                    model.imageUrl,
+                    height: 69,
+                    width: 60,
+                    fit: BoxFit.fill,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 69,
+                      width: 60,
+                      color: const Color(0xffD9D9D9),
+                      child: const Icon(Icons.category, color: Color(0xff434C6D)),
+                    ),
+                  )
+                : Container(
+                    height: 69,
+                    width: 60,
+                    color: const Color(0xffD9D9D9),
+                    child: const Icon(Icons.category, color: Color(0xff434C6D)),
+                  ),
           ),
           title: Text(
             model.titleEn,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: Color(0xff434C6D),
@@ -38,8 +50,7 @@ class Items extends StatelessWidget {
           ),
           trailing: SvgPicture.asset("assets/icons/forward.svg"),
         ),
-        SizedBox(height: 21),
-
+        const SizedBox(height: 21),
       ],
     );
   }

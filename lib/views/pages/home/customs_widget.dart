@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../features/home/data/models/product_model.dart';
 import '../cart/cubit.dart';
 import 'cubit.dart';
-import 'model.dart';
 
 class Items extends StatelessWidget {
   final ProductModel model;

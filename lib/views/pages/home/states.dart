@@ -1,4 +1,4 @@
-import 'package:cosmetics_app/views/pages/home/model.dart';
+import '../../../features/home/data/models/product_model.dart';
 
 class HomeStates {}
 

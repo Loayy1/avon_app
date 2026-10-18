@@ -1,22 +1,30 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/logic/dio_helper.dart';
-import 'model.dart';
+import '../../../core/network/api_endpoints.dart';
+import '../../../features/home/data/datasources/home_remote_data_source.dart';
+import '../../../features/home/data/models/product_model.dart';
+import '../../../features/home/data/repositories/home_repository_impl.dart';
+import '../../../features/home/domain/repositories/home_repository.dart';
 import 'states.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
-  HomeCubit() : super(HomeInitialState());
+  final HomeRepository repository;
+
+  HomeCubit({HomeRepository? homeRepository})
+      : repository = homeRepository ??
+            HomeRepositoryImpl(remoteDataSource: HomeRemoteDataSourceImpl()),
+        super(HomeInitialState());
 
   List<ProductModel> products = [];
 
   void getData() async {
     emit(HomeLoadingState());
-    final resp = await DioHelper.getData("/api/Products");
-    if (resp.isSuccess) {
-      final details = ProductData.fromJson({"data": resp.data});
-      products = details.list;
-      emit(HomeSuccessState(list: details.list));
-    } else {
+    try {
+      final list = await repository.getProducts();
+      products = list;
+      emit(HomeSuccessState(list: list));
+    } catch (_) {
       emit(HomeFailedState());
     }
   }
@@ -24,7 +32,7 @@ class HomeCubit extends Cubit<HomeStates> {
   /// إضافة منتج للـ cart بدون عمل rebuild للصفحة بالكامل
   Future<bool> addToCart(ProductModel product) async {
     final resp = await DioHelper.sendData(
-      "/api/Cart/add",
+      ApiEndpoints.cartAdd,
       params: {"productId": product.id, "quantity": 1},
       requiresAuth: true,
     );

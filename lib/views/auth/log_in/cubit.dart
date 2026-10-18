@@ -1,54 +1,63 @@
-import 'package:cosmetics_app/views/auth/log_in/states.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
+import '../../../features/auth/data/datasources/auth_remote_data_source.dart';
+import '../../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../../features/auth/domain/repositories/auth_repository.dart';
 import '../../view.dart';
+import 'states.dart';
 
-class LogInCubit extends Cubit<LogInStates>{
-  LogInCubit():super(LogInInitialState());
+class LogInCubit extends Cubit<LogInStates> {
+  final AuthRepository repository;
+
+  LogInCubit({AuthRepository? authRepository})
+      : repository = authRepository ??
+            AuthRepositoryImpl(remoteDataSource: AuthRemoteDataSourceImpl()),
+        super(LogInInitialState());
 
   bool isObscure = true;
   final passwordController = TextEditingController();
   final phoneController = TextEditingController();
-  String? phoneCode;
+  String? phoneCode = "+20";
   String? errorMsg;
 
-  void togglePassword(){
-   isObscure = !isObscure;
-   emit(LogInTogglePasswordState());
+  void togglePassword() {
+    isObscure = !isObscure;
+    emit(LogInTogglePasswordState());
   }
 
-  void formUpdate(){
+  void formUpdate() {
     emit(LogInFormUpdateState());
   }
 
-  void codeUpdate(String code){
-      phoneCode = code;
-      emit(LogInCodeUpdateState());
+  void codeUpdate(String code) {
+    phoneCode = code;
+    emit(LogInCodeUpdateState());
   }
 
-
-  void logIn() async {
+  Future<void> logIn() async {
     emit(LogInLoadingState());
-    final resp = await DioHelper.sendData(
-      "/api/Auth/login",
-      data: {
-        "countryCode": phoneCode,
-        "phoneNumber": phoneController.text,
-        "password": passwordController.text,
-      },
+    final result = await repository.login(
+      countryCode: phoneCode ?? "+20",
+      phoneNumber: phoneController.text.trim(),
+      password: passwordController.text,
     );
-    if (resp.isSuccess) {
-      final token = resp.data["token"] ?? resp.data["data"]?["token"];
-      await DioHelper.saveToken(token);
+
+    if (result.isSuccess) {
+      errorMsg = null;
       emit(LogInSuccessState());
-      goTo(page: ViewPage());
+      goTo(page: const ViewPage());
     } else {
+      errorMsg = result.message ?? "Phone or password is wrong";
       emit(LogInFailedState());
-      errorMsg = "phone or password is wrong";
     }
   }
 
+  @override
+  Future<void> close() {
+    passwordController.dispose();
+    phoneController.dispose();
+    return super.close();
+  }
 }

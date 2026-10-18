@@ -1,7 +1,17 @@
+import '../../../features/profile/data/models/user_profile_model.dart';
 
-class ProfileStates{}
+abstract class ProfileStates {}
 
-class ProfileInitialStates extends ProfileStates{}
-class ProfileLoadingStates extends ProfileStates{}
-class ProfileSuccessStates extends ProfileStates{}
-class ProfileFailedStates extends ProfileStates{}
+class ProfileInitialStates extends ProfileStates {}
+
+class ProfileLoadingStates extends ProfileStates {}
+
+class ProfileSuccessStates extends ProfileStates {
+  final UserProfileModel? profile;
+
+  ProfileSuccessStates({this.profile});
+}
+
+class ProfileFailedStates extends ProfileStates {}
+
+class ProfileLogoutSuccessStates extends ProfileStates {}

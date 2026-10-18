@@ -1,309 +1,302 @@
-import 'package:cosmetics_app/core/logic/dio_helper.dart';
-import 'package:cosmetics_app/core/logic/helper_methods.dart';
-import 'package:cosmetics_app/views/auth/sign_in.dart';
-import 'package:cosmetics_app/views/pages/home/view.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/logic/helper_methods.dart';
+import '../../features/auth/presentation/cubits/verify_cubit.dart';
+import '../../features/auth/presentation/cubits/verify_states.dart';
 import '../view.dart';
 import 'create_password/view.dart';
 import 'forget_password.dart';
 
-class VerifyView extends StatefulWidget {
+class VerifyView extends StatelessWidget {
   final bool fromSignIn;
-  final phone;
-  final phoneCode;
+  final String? phone;
+  final String? phoneCode;
 
-  const VerifyView({super.key, required this.fromSignIn, this.phone, this.phoneCode});
-
-  @override
-  State<VerifyView> createState() => _VerifyViewState();
-}
-
-class _VerifyViewState extends State<VerifyView> {
-  final List<FocusNode> focusNodes = List.generate(4, (index) => FocusNode());
-  final List<TextEditingController> codeController = List.generate(
-    4,
-    (index) => TextEditingController(),
-  );
-
-  void verifyCode() async {
-    final code = codeController.map((e) =>e.text ).join();
-
-    final resp = await DioHelper.sendData(
-      "/api/Auth/verify-otp",
-      data: {"countryCode": widget.phoneCode, "phoneNumber": widget.phone, "otpCode": code},
-    );
-    print("Data : ${resp.data}");
-    if (resp.isSuccess) {
-      if (widget.fromSignIn) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/done_verify.png"),
-                  SizedBox(height: 26),
-                  Text(
-                    "Account Activated!",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff434C6D),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "Congratulations! Your account \nhas been successfully activated",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff8E8EA9),
-                    ),
-                  ),
-                  SizedBox(height: 23),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        if (widget.fromSignIn == true) {
-                          goTo(page: ViewPage());
-                        } else {
-                          goTo(page: CreatePasswordView(phone: widget.phone,phonecode: widget.phoneCode,));
-                        }
-                      });
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color(0xffD75D72),
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 18,
-                        horizontal: 91,
-                      ),
-                    ),
-                    child: Text(
-                      widget.fromSignIn ? "Go to home" : "create password",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      } else {
-        goTo(page: CreatePasswordView(phone: widget.phone,phonecode: widget.phoneCode));
-      }
-    }
-  }
-  
-  void reSendCode()async{
-    final resp=await DioHelper.sendData("/api/Auth/resend-otp",data: {
-      "countryCode": "+20",
-      "phoneNumber": widget.phone
-    });
-    print("Data: ${resp.data}");
-  }
-
-  @override
-  void dispose() {
-    for (var controller in codeController) {
-      controller.dispose();
-    }
-    for (var node in focusNodes) {
-      node.dispose();
-    }
-    super.dispose();
-  }
+  const VerifyView({
+    super.key,
+    required this.fromSignIn,
+    this.phone,
+    this.phoneCode,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(13),
-            child: Form(
-              onChanged: () {
-                setState(() {});
-              },
-              child: Column(
-                children: [
-                  ?widget.fromSignIn
-                      ? null
-                      : Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: IconButton(
-                            onPressed: () {
-                              goTo(page: ForgetPasswordView());
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              size: 22,
-                              color: Color(0xff101010),
+    return BlocProvider(
+      create: (context) => VerifyCubit(),
+      child: Builder(
+        builder: (context) {
+          final cubit = BlocProvider.of<VerifyCubit>(context);
+          return Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(13),
+                  child: BlocConsumer<VerifyCubit, VerifyStates>(
+                    listener: (context, state) {
+                      if (state is VerifySuccessState) {
+                        if (fromSignIn) {
+                          _showSuccessDialog(context);
+                        } else {
+                          goTo(
+                            page: CreatePasswordView(
+                              phone: phone,
+                              phonecode: phoneCode,
                             ),
-                            style: IconButton.styleFrom(
-                              backgroundColor: Color(0x0D101010),
-                              fixedSize: Size(22, 22),
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 12),
+                          );
+                        }
+                      } else if (state is VerifyResendSuccessState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("OTP Code resent successfully"),
+                            backgroundColor: Color(0xff434C6D),
                           ),
-                        ),
-                  SizedBox(height: 40),
-                  Image.asset("assets/images/logo.png", height: 62, width: 67),
-                  SizedBox(height: 40),
-                  Text(
-                    "Verify Code",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff434C6D),
-                    ),
-                  ),
-                  SizedBox(height: 40),
-                  Text(
-                    "We just sent a 4-digit verification code to \n+20 1022658997 Enter the code in the box \nbelow to continue.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff8E8EA9),
-                    ),
-                  ),
-                  SizedBox(height: 40),
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        foregroundColor: Color(0xffD75D72).withValues(alpha: .4),
-                      ),
-                      child: Text(
-                        "Edit the number",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xffD75D72),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(4, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color(0xffD75D72),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
+                        );
+                      } else if (state is VerifyFailedState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(state.message),
+                            backgroundColor: Colors.red,
                           ),
-                          child: TextFormField(
-                            controller: codeController[index],
-                            focusNode: focusNodes[index],
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return Column(
+                        children: [
+                          if (!fromSignIn)
+                            Align(
+                              alignment: AlignmentDirectional.topStart,
+                              child: IconButton(
+                                onPressed: () => goTo(page: const ForgetPasswordView()),
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 22,
+                                  color: Color(0xff101010),
+                                ),
+                                style: IconButton.styleFrom(
+                                  backgroundColor: const Color(0x0D101010),
+                                  fixedSize: const Size(22, 22),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                              ),
+                            ),
+                          const SizedBox(height: 40),
+                          Image.asset(
+                            "assets/images/logo.png",
+                            height: 62,
+                            width: 67,
+                          ),
+                          const SizedBox(height: 40),
+                          const Text(
+                            "Verify Code",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff434C6D),
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          Text(
+                            "We just sent a 4-digit verification code to \n${phoneCode ?? "+20"} ${phone ?? ''}. Enter the code in the box \nbelow to continue.",
                             textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            cursorColor: Color(0x38101010),
-                            maxLength: 1,
-                            onChanged: (value) {
-                              if (value.isNotEmpty && index < 3) {
-                                FocusScope.of(
-                                  context,
-                                ).requestFocus(focusNodes[index + 1]);
-                              }
-                            },
-                            decoration: InputDecoration(
-                              counterText: "",
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.zero,
-                              enabledBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xff8E8EA9),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-                  ),
-                  SizedBox(height: 43),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        "Didn’t receive a code? ",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff434C6D),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          reSendCode();
-                        },
-                        style: TextButton.styleFrom(
-                          foregroundColor: Color(
-                            0xffD75D72,
-                          ).withValues(alpha: .1),
-                        ),
-                        child: Text(
-                          "Resend",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0x8AD75D72),
+                          const SizedBox(height: 40),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(4, (index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Container(
+                                  height: 48,
+                                  width: 48,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: const Color(0xffD75D72),
+                                      width: 1.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: TextFormField(
+                                    controller: cubit.codeControllers[index],
+                                    focusNode: cubit.focusNodes[index],
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    cursorColor: const Color(0xff434C6D),
+                                    maxLength: 1,
+                                    onChanged: (value) {
+                                      cubit.onCodeChanged();
+                                      if (value.isNotEmpty && index < 3) {
+                                        FocusScope.of(context).requestFocus(
+                                          cubit.focusNodes[index + 1],
+                                        );
+                                      } else if (value.isEmpty && index > 0) {
+                                        FocusScope.of(context).requestFocus(
+                                          cubit.focusNodes[index - 1],
+                                        );
+                                      }
+                                    },
+                                    decoration: const InputDecoration(
+                                      counterText: "",
+                                      border: InputBorder.none,
+                                      contentPadding: EdgeInsets.zero,
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
                           ),
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        "0:36",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff8E8EA9),
-                        ),
-                      ),
-                    ],
+                          const SizedBox(height: 35),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Didn’t receive a code? ",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff434C6D),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: state is VerifyResendLoadingState
+                                    ? null
+                                    : () {
+                                        cubit.resendOtp(
+                                          countryCode: phoneCode ?? "+20",
+                                          phoneNumber: phone ?? "",
+                                        );
+                                      },
+                                child: state is VerifyResendLoadingState
+                                    ? const SizedBox(
+                                        height: 14,
+                                        width: 14,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Resend",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xffD75D72),
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 45),
+                          FilledButton(
+                            onPressed: (state is VerifyLoadingState ||
+                                    cubit.otpCode.length < 4)
+                                ? null
+                                : () {
+                                    cubit.verifyOtp(
+                                      countryCode: phoneCode ?? "+20",
+                                      phoneNumber: phone ?? "",
+                                    );
+                                  },
+                            style: FilledButton.styleFrom(
+                              disabledBackgroundColor:
+                                  const Color(0xffD75D72).withValues(alpha: .4),
+                              backgroundColor: const Color(0xffD75D72),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: 115,
+                              ),
+                            ),
+                            child: state is VerifyLoadingState
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Text(
+                                    "Done",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                  SizedBox(height: 113),
-                  TextButton(
-                    onPressed:
-                        codeController[0].text.isEmpty ||
-                            codeController[1].text.isEmpty ||
-                            codeController[2].text.isEmpty ||
-                            codeController[3].text.isEmpty
-                        ? null
-                        : () {
-                            verifyCode();
-                          },
-                    style: TextButton.styleFrom(
-                      disabledBackgroundColor: Colors.grey,
-                      backgroundColor: Color(0xffD75D72),
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 21,
-                        horizontal: 115,
-                      ),
-                    ),
-                    child: Text("Done", style: TextStyle(color: Colors.white)),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
+    );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset("assets/images/done_verify.png"),
+              const SizedBox(height: 26),
+              const Text(
+                "Account Activated!",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff434C6D),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Congratulations! Your account \nhas been successfully activated",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff8E8EA9),
+                ),
+              ),
+              const SizedBox(height: 23),
+              FilledButton(
+                onPressed: () => goTo(page: const ViewPage()),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xffD75D72),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 70,
+                  ),
+                ),
+                child: const Text(
+                  "Go to home",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

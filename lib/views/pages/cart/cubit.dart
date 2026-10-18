@@ -1,66 +1,47 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/logic/dio_helper.dart';
-import 'model.dart';
+import '../../../features/cart/data/datasources/cart_remote_data_source.dart';
+import '../../../features/cart/data/models/cart_item_model.dart';
+import '../../../features/cart/data/repositories/cart_repository_impl.dart';
+import '../../../features/cart/domain/repositories/cart_repository.dart';
 import 'states.dart';
 
 class CartCubit extends Cubit<CartStates> {
-  CartCubit() : super(CartInitialState());
+  final CartRepository repository;
+
+  CartCubit({CartRepository? cartRepository})
+      : repository = cartRepository ??
+            CartRepositoryImpl(remoteDataSource: CartRemoteDataSourceImpl()),
+        super(CartInitialState());
 
   List<CartItemModel> items = [];
 
   /// حساب إجمالي السعر ديناميكياً من العناصر الموجودة في السلة
   double get subtotal => items.fold(0.0, (sum, item) => sum + (item.price * item.quantity));
 
-  /// جلب عناصر السلة من الـ API
+  /// جلب عناصر السلة من الـ API عبر الـ Repository
   Future<void> getCart() async {
     emit(CartLoadingState());
-    final resp = await DioHelper.getData("/api/Cart", requiresAuth: true);
-    if (resp.isSuccess && resp.data != null) {
-      List rawList = [];
-      if (resp.data is List) {
-        rawList = resp.data as List;
-      } else if (resp.data is Map) {
-        rawList = (resp.data["items"] ??
-                resp.data["data"] ??
-                resp.data["cartItems"] ??
-                resp.data["cart_items"] ??
-                resp.data["cart"]?["items"] ??
-                []) as List;
-      }
-
-      items = rawList
-          .map((e) => CartItemModel.fromJson(Map<String, dynamic>.from(e)))
-          .toList();
-
+    try {
+      final list = await repository.getCart();
+      items = list;
       emit(CartSuccessState());
-    } else {
-      final msg = resp.statusCode == 401
-          ? "Please login first to view your cart"
-          : "Failed to load cart items";
-      emit(CartFailedState(message: msg));
+    } catch (_) {
+      emit(CartFailedState(message: "Failed to load cart items"));
     }
   }
 
-  /// إضافة منتج إلى السلة من أي مكان في التطبيق
+  /// إضافة منتج إلى السلة
   Future<bool> addToCart(int productId, {int quantity = 1}) async {
     emit(CartItemActionLoadingState(productId: productId));
-    final resp = await DioHelper.sendData(
-      "/api/Cart/add",
-      params: {"productId": productId, "quantity": quantity},
-      requiresAuth: true,
-    );
+    final success = await repository.addToCart(productId, quantity: quantity);
 
-    if (resp.isSuccess) {
+    if (success) {
       await getCart();
       emit(CartAddedSuccessState());
       return true;
     } else {
-      emit(CartFailedState(
-        message: resp.statusCode == 401
-            ? "Please login first to add items"
-            : "Failed to add item to cart",
-      ));
+      emit(CartFailedState(message: "Failed to add item to cart"));
       return false;
     }
   }
@@ -68,13 +49,9 @@ class CartCubit extends Cubit<CartStates> {
   /// حذف عنصر من السلة عبر الـ productId
   Future<bool> removeItem(int productId) async {
     emit(CartItemActionLoadingState(productId: productId));
-    final resp = await DioHelper.deleteData(
-      "/api/Cart/remove/$productId",
-      requiresAuth: true,
-    );
+    final success = await repository.removeFromCart(productId);
 
-    if (resp.isSuccess) {
-      // إزالة العنصر محلياً وإعادة الحساب فوراً
+    if (success) {
       items.removeWhere((item) => item.productId == productId);
       emit(CartSuccessState());
       return true;
@@ -98,13 +75,9 @@ class CartCubit extends Cubit<CartStates> {
       items[index].quantity = quantity;
       emit(CartUpdateQuantityState());
 
-      final resp = await DioHelper.updateData(
-        "/api/Cart/update",
-        params: {"productId": productId, "quantity": quantity},
-        requiresAuth: true,
-      );
+      final success = await repository.updateQuantity(productId, quantity);
 
-      if (!resp.isSuccess) {
+      if (!success) {
         // في حال فشل الـ API نرجع للكمية القديمة
         items[index].quantity = oldQuantity;
         emit(CartUpdateQuantityState());

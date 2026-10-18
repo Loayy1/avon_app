@@ -1,10 +1,21 @@
-import 'package:cosmetics_app/views/pages/profile/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../features/profile/data/datasources/profile_remote_data_source.dart';
+import '../../../features/profile/data/models/user_profile_model.dart';
+import '../../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../../features/profile/domain/repositories/profile_repository.dart';
 import 'customes_widget.dart';
+import 'states.dart';
 
 class ProfileCubit extends Cubit<ProfileStates> {
-  ProfileCubit() : super(ProfileInitialStates());
+  final ProfileRepository repository;
+
+  ProfileCubit({ProfileRepository? profileRepository})
+      : repository = profileRepository ??
+            ProfileRepositoryImpl(remoteDataSource: ProfileRemoteDataSourceImpl()),
+        super(ProfileInitialStates());
+
+  UserProfileModel? userProfile;
 
   final list = [
     ProfileModel(title: "Edit Info", img: "assets/icons/edit_info.svg"),
@@ -14,7 +25,22 @@ class ProfileCubit extends Cubit<ProfileStates> {
     ProfileModel(title: "Voucher ", img: "assets/icons/voucher .svg"),
   ];
 
-  void getData(){
-    emit(ProfileSuccessStates());
+  Future<void> getData() async {
+    emit(ProfileLoadingStates());
+    try {
+      final profile = await repository.getProfile();
+      userProfile = profile;
+      emit(ProfileSuccessStates(profile: profile));
+    } catch (_) {
+      emit(ProfileSuccessStates(profile: null));
+    }
+  }
+
+  Future<bool> logout() async {
+    final success = await repository.logout();
+    if (success) {
+      emit(ProfileLogoutSuccessStates());
+    }
+    return success;
   }
 }

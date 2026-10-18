@@ -1,12 +1,18 @@
-import 'package:cosmetics_app/views/auth/create_password/states.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/logic/dio_helper.dart';
+import '../../../features/auth/data/datasources/auth_remote_data_source.dart';
+import '../../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../../features/auth/domain/repositories/auth_repository.dart';
+import 'states.dart';
 
 class CreatePasswordCubit extends Cubit<CreatePasswordStates> {
-  CreatePasswordCubit() : super(CreatePasswordInitialState());
+  final AuthRepository repository;
+
+  CreatePasswordCubit({AuthRepository? authRepository})
+      : repository = authRepository ??
+            AuthRepositoryImpl(remoteDataSource: AuthRemoteDataSourceImpl()),
+        super(CreatePasswordInitialState());
 
   bool isObscure = true;
   bool confirmIsObscure = true;
@@ -14,18 +20,22 @@ class CreatePasswordCubit extends Cubit<CreatePasswordStates> {
   final confirmPasswordController = TextEditingController();
 
   void resetPassword({required String phone, required String phoneCode}) async {
-    final resp = await DioHelper.sendData(
-      "/api/Auth/reset-password",
-      data: {
-        "countryCode": phoneCode,
-        "phoneNumber": phone,
-        "newPassword": passwordController.text,
-        "confirmPassword": confirmPasswordController.text,
-      },
+    if (passwordController.text != confirmPasswordController.text) {
+      emit(CreatePasswordFailedState());
+      return;
+    }
+
+    emit(CreatePasswordLoadingState());
+    final result = await repository.resetPassword(
+      countryCode: phoneCode,
+      phoneNumber: phone,
+      newPassword: passwordController.text,
+      confirmPassword: confirmPasswordController.text,
     );
-    if (resp.isSuccess) {
+
+    if (result.isSuccess) {
       emit(CreatePasswordSuccessState());
-    }else{
+    } else {
       emit(CreatePasswordFailedState());
     }
   }
@@ -42,5 +52,12 @@ class CreatePasswordCubit extends Cubit<CreatePasswordStates> {
   void confirmObscure() {
     confirmIsObscure = !confirmIsObscure;
     emit(CreatePasswordToggleConfirmState());
+  }
+
+  @override
+  Future<void> close() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
   }
 }

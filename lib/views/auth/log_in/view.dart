@@ -1,4 +1,3 @@
-import 'package:cosmetics_app/core/logic/dio_helper.dart';
 import 'package:cosmetics_app/core/logic/helper_methods.dart';
 import 'package:cosmetics_app/views/auth/log_in/cubit.dart';
 import 'package:cosmetics_app/views/auth/log_in/states.dart';
@@ -6,7 +5,6 @@ import 'package:cosmetics_app/views/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../view.dart';
 import '../forget_password.dart';
 
 class LogInView extends StatefulWidget {

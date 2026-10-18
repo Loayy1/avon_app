@@ -1,4 +1,3 @@
-import 'package:cosmetics_app/core/logic/dio_helper.dart';
 import 'package:cosmetics_app/core/logic/helper_methods.dart';
 import 'package:cosmetics_app/views/auth/create_password/states.dart';
 import 'package:cosmetics_app/views/auth/log_in/view.dart';
@@ -9,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'cubit.dart';
 
 class CreatePasswordView extends StatefulWidget {
-  final phone;
-  final phonecode;
+  final String? phone;
+  final String? phonecode;
 
   const CreatePasswordView({super.key, this.phone, this.phonecode});
 
@@ -175,7 +174,10 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                                         cubit.confirmPasswordController.text
                                     ? null
                                     : () {
-                                  cubit.resetPassword(phone: widget.phone,phoneCode: widget.phonecode);
+                                  cubit.resetPassword(
+                                    phone: widget.phone ?? '',
+                                    phoneCode: widget.phonecode ?? '',
+                                  );
                                 },
                                 style: TextButton.styleFrom(
                                   padding: EdgeInsets.symmetric(
