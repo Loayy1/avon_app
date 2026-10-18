@@ -1,3 +1,6 @@
+import 'package:cosmetics_app/core/logic/dio_helper.dart';
+import 'package:cosmetics_app/core/logic/helper_methods.dart';
+import 'package:cosmetics_app/views/auth/log_in/view.dart';
 import 'package:cosmetics_app/views/pages/profile/cubit.dart';
 import 'package:cosmetics_app/views/pages/profile/states.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +90,10 @@ class _ProfileViewState extends State<ProfileView> {
                     Padding(
                       padding: const EdgeInsets.all(13),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          await DioHelper.saveToken(null);
+                          goTo(page: LogInView(), keepHistory: false);
+                        },
                         splashColor: Colors.red.withValues(alpha: .1),
                         borderRadius: BorderRadius.circular(8),
                         child: SizedBox(

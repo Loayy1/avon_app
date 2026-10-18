@@ -1,27 +1,19 @@
-import 'package:cosmetics_app/views/auth/create_password/view.dart';
-import 'package:cosmetics_app/views/auth/forget_password.dart';
 import 'package:cosmetics_app/views/auth/log_in/view.dart';
-import 'package:cosmetics_app/views/auth/on_boarding.dart';
-import 'package:cosmetics_app/views/auth/sign_in.dart';
-import 'package:cosmetics_app/views/auth/splash.dart';
-import 'package:cosmetics_app/views/auth/verify.dart';
-import 'package:cosmetics_app/views/pages/cart/view.dart';
-import 'package:cosmetics_app/views/pages/cart/checkout.dart';
-import 'package:cosmetics_app/views/pages/categories/view.dart';
-import 'package:cosmetics_app/views/pages/home/view.dart';
-import 'package:cosmetics_app/views/pages/profile/view.dart';
-import 'package:cosmetics_app/views/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'core/logic/dio_helper.dart';
 import 'core/logic/helper_methods.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DioHelper.loadToken();
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: navKey,
-      home:LogInView(),
+      home: LogInView(),
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xffD9D9D9),
         appBarTheme: AppBarThemeData(

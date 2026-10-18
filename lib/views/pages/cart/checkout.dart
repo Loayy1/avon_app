@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../view.dart';
-import 'view.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key});
+  final double subtotal;
+  const CheckoutView({super.key, this.subtotal = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +238,7 @@ class CheckoutView extends StatelessWidget {
                     ),
                     SizedBox(height: 40),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "Subtotal",
@@ -247,9 +248,8 @@ class CheckoutView extends StatelessWidget {
                             color: Color(0xff434C6D),
                           ),
                         ),
-                        SizedBox(width: 204),
                         Text(
-                          "16.100 EGP",
+                          "${subtotal.toStringAsFixed(2)} EGP",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -260,6 +260,7 @@ class CheckoutView extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "SHIPPING FEES",
@@ -269,7 +270,6 @@ class CheckoutView extends StatelessWidget {
                             color: Color(0xff434C6D),
                           ),
                         ),
-                        SizedBox(width: 115),
                         Text(
                           "TO BE CALCULATED",
                           style: TextStyle(
@@ -283,6 +283,7 @@ class CheckoutView extends StatelessWidget {
                     Divider(color: Color(0xff73B9BB)),
                     SizedBox(height: 30),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "TOTAL + VAT",
@@ -292,9 +293,8 @@ class CheckoutView extends StatelessWidget {
                             color: Color(0xff434C6D),
                           ),
                         ),
-                        SizedBox(width: 178),
                         Text(
-                          "16.100 EGP",
+                          "${subtotal.toStringAsFixed(2)} EGP",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,

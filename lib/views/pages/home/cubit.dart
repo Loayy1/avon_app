@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   /// إضافة منتج للـ cart عن طريق الـ API
-  Future<void> addToCart(ProductModel product) async {
+  Future<bool> addToCart(ProductModel product) async {
     emit(HomeAddToCartLoadingState(productId: product.id));
     final resp = await DioHelper.sendData(
       "/api/Cart/add",
@@ -31,10 +31,12 @@ class HomeCubit extends Cubit<HomeStates> {
     );
     if (resp.isSuccess) {
       emit(HomeAddToCartSuccessState(productName: product.nameEn));
+      emit(HomeSuccessState(list: products));
+      return true;
     } else {
       emit(HomeAddToCartFailedState());
+      emit(HomeSuccessState(list: products));
+      return false;
     }
-    // نرجع للـ state الأصلي بعد الـ feedback
-    emit(HomeSuccessState(list: products));
   }
 }

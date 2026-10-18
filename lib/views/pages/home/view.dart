@@ -1,4 +1,3 @@
-import 'package:cosmetics_app/core/logic/dio_helper.dart';
 import 'package:cosmetics_app/views/pages/home/cubit.dart';
 import 'package:cosmetics_app/views/pages/home/states.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'customs_widget.dart';
-import 'model.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

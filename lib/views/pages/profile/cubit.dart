@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:cosmetics_app/core/logic/dio_helper.dart';
 import 'package:cosmetics_app/views/pages/profile/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

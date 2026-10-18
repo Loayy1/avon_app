@@ -11,13 +11,9 @@ class CartFailedState extends CartStates {
   CartFailedState({this.message = "Something went wrong"});
 }
 
-class CartAddLoadingState extends CartStates {
+class CartItemActionLoadingState extends CartStates {
   final int productId;
-  CartAddLoadingState({required this.productId});
+  CartItemActionLoadingState({required this.productId});
 }
-
-class CartAddSuccessState extends CartStates {}
-
-class CartRemoveLoadingState extends CartStates {}
 
 class CartUpdateQuantityState extends CartStates {}

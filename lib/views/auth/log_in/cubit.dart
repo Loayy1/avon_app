@@ -41,8 +41,8 @@ class LogInCubit extends Cubit<LogInStates>{
       },
     );
     if (resp.isSuccess) {
-      // حفظ الـ token من الـ response عشان الـ Cart والـ APIs المحتاجة auth
-      DioHelper.token = resp.data["token"];
+      final token = resp.data["token"] ?? resp.data["data"]?["token"];
+      await DioHelper.saveToken(token);
       emit(LogInSuccessState());
       goTo(page: ViewPage());
     } else {
