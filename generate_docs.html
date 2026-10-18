@@ -2,13 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>وثيقة البنية المعمارية النظيفة وإدارة الحالة - تطبيق Avon Cosmetics</title>
+  <title>وثيقة البنية المعمارية وشرح الكود التفصيلي - تطبيق Avon Cosmetics</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Fira+Code:wght@400;600&display=swap');
 
     @page {
       size: A4;
-      margin: 14mm 14mm 14mm 14mm;
+      margin: 12mm 12mm 12mm 12mm;
     }
 
     * {
@@ -24,7 +24,7 @@
       background: #FFFFFF;
       margin: 0;
       padding: 0;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .page {
@@ -41,8 +41,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 250mm;
-      padding: 30px 20px;
+      min-height: 260mm;
+      padding: 26px 20px;
       border: 3px solid #D75D72;
       border-radius: 16px;
       background: linear-gradient(145deg, #FFF5F7 0%, #FFFFFF 60%, #FDEBF0 100%);
@@ -53,52 +53,50 @@
       align-self: flex-start;
       background: #D75D72;
       color: white;
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.5px;
+      font-size: 12px;
     }
 
     .cover-header {
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .cover-title {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 900;
       color: #2B2D42;
       line-height: 1.3;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .cover-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: #D75D72;
       font-weight: 700;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .cover-description {
-      font-size: 13.5px;
+      font-size: 13px;
       color: #4A5568;
-      line-height: 1.8;
-      max-width: 90%;
+      line-height: 1.7;
     }
 
     .meta-box {
       background: white;
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid #FED7E2;
       box-shadow: 0 4px 12px rgba(215, 93, 114, 0.08);
-      margin: 25px 0;
+      margin: 20px 0;
     }
 
     .meta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     .meta-item {
@@ -107,13 +105,13 @@
     }
 
     .meta-label {
-      font-size: 11px;
+      font-size: 10.5px;
       color: #718096;
       font-weight: 600;
     }
 
     .meta-value {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #1A202C;
       direction: ltr;
@@ -124,9 +122,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 15px;
+      padding-top: 12px;
       border-top: 2px solid #FED7E2;
-      font-size: 12px;
+      font-size: 11px;
       color: #718096;
     }
 
@@ -134,32 +132,29 @@
     h1, h2, h3, h4 {
       color: #2B2D42;
       font-weight: 800;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      margin-top: 16px;
+      margin-bottom: 8px;
     }
 
     h1 {
-      font-size: 20px;
+      font-size: 18px;
       border-bottom: 2px solid #D75D72;
-      padding-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      padding-bottom: 5px;
     }
 
     h2 {
-      font-size: 16px;
+      font-size: 15px;
       color: #D75D72;
-      margin-top: 16px;
+      margin-top: 14px;
     }
 
     h3 {
-      font-size: 14px;
-      color: #4A5568;
+      font-size: 13px;
+      color: #2D3748;
     }
 
     p {
-      margin: 6px 0;
+      margin: 5px 0;
       color: #4A5568;
       text-align: justify;
     }
@@ -167,34 +162,24 @@
     /* Badges & Pills */
     .pill {
       display: inline-block;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10.5px;
       font-weight: 700;
     }
 
-    .pill-success {
-      background: #DEF7EC;
-      color: #03543F;
-    }
-
-    .pill-info {
-      background: #E1EFFE;
-      color: #1E429F;
-    }
-
-    .pill-primary {
-      background: #FDE8E8;
-      color: #9B1C1C;
-    }
+    .pill-success { background: #DEF7EC; color: #03543F; }
+    .pill-info { background: #E1EFFE; color: #1E429F; }
+    .pill-primary { background: #FDE8E8; color: #9B1C1C; }
+    .pill-warning { background: #FEF08A; color: #854D0E; }
 
     /* Cards */
     .card {
       background: #FAFAFA;
       border: 1px solid #E2E8F0;
       border-radius: 8px;
-      padding: 12px 16px;
-      margin: 12px 0;
+      padding: 10px 14px;
+      margin: 10px 0;
     }
 
     .card-accent {
@@ -205,7 +190,7 @@
     .card-title {
       font-weight: 700;
       color: #2B2D42;
-      font-size: 13.5px;
+      font-size: 12.5px;
       margin-bottom: 4px;
     }
 
@@ -213,12 +198,12 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0;
-      font-size: 12px;
+      margin: 10px 0;
+      font-size: 11px;
     }
 
     th, td {
-      padding: 8px 12px;
+      padding: 7px 10px;
       text-align: right;
       border: 1px solid #E2E8F0;
     }
@@ -230,17 +215,15 @@
       border-bottom: 2px solid #CBD5E0;
     }
 
-    tr:nth-child(even) td {
-      background: #FDFDFD;
-    }
+    tr:nth-child(even) td { background: #FDFDFD; }
 
     /* Code Blocks */
     code {
       font-family: 'Fira Code', Consolas, monospace;
-      font-size: 11.5px;
+      font-size: 10.5px;
       background: #EDF2F7;
       color: #D75D72;
-      padding: 2px 6px;
+      padding: 1px 5px;
       border-radius: 4px;
       direction: ltr;
       display: inline-block;
@@ -249,15 +232,15 @@
     pre {
       background: #1A202C;
       color: #E2E8F0;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 10px;
+      border-radius: 6px;
       font-family: 'Fira Code', Consolas, monospace;
-      font-size: 11px;
-      line-height: 1.5;
+      font-size: 10px;
+      line-height: 1.45;
       direction: ltr;
       text-align: left;
       overflow-x: hidden;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     /* Flow Diagrams */
@@ -267,20 +250,20 @@
       align-items: center;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 14px;
-      margin: 14px 0;
-      gap: 8px;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px 0;
+      gap: 6px;
     }
 
     .diagram-step {
       flex: 1;
       background: white;
       border: 1px solid #CBD5E0;
-      border-radius: 8px;
-      padding: 10px;
+      border-radius: 6px;
+      padding: 8px;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
     .diagram-step.highlight {
@@ -289,58 +272,72 @@
     }
 
     .diagram-step-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       color: #2B2D42;
     }
 
     .diagram-step-sub {
-      font-size: 10px;
+      font-size: 9.5px;
       color: #718096;
-      margin-top: 4px;
+      margin-top: 2px;
       direction: ltr;
     }
 
     .diagram-arrow {
-      font-size: 18px;
+      font-size: 16px;
       color: #D75D72;
       font-weight: bold;
     }
 
-    /* Grid layout */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     .feature-box {
       border: 1px solid #E2E8F0;
       border-radius: 8px;
-      padding: 12px;
+      padding: 10px;
       background: white;
+      margin-bottom: 8px;
     }
 
     .feature-box h4 {
       margin-top: 0;
       color: #D75D72;
-      font-size: 13px;
+      font-size: 12px;
       border-bottom: 1px dashed #CBD5E0;
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
 
     ul, ol {
-      padding-right: 20px;
-      margin: 6px 0;
+      padding-right: 18px;
+      margin: 4px 0;
     }
 
     li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       color: #4A5568;
     }
 
     .avoid-break {
       page-break-inside: avoid;
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: #D75D72;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-weight: bold;
+      font-size: 11px;
+      margin-left: 6px;
     }
   </style>
 </head>
@@ -350,17 +347,17 @@
   <div class="page">
     <div class="cover-container">
       <div>
-        <span class="cover-badge">وثيقة معمارية وهندسية شاملة</span>
+        <span class="cover-badge">دليل الفهم والشرح المعماري التفصيلي (بالعامية المصرية)</span>
         <div class="cover-header">
           <div class="cover-title">
-            تطبيق مستحضرات التجميل (Avon App)<br>
-            دليل التحول المعماري الشامل إلى Clean Architecture وإدارة الحالة (BLoC/Cubit)
+            تطبيق مستحضرات التجميل (Avon Cosmetics App)<br>
+            الشرح الهندسي الكامل للكود، بنية Clean Architecture، ودورة عمل السلة والفاتورة
           </div>
           <div class="cover-subtitle">
-            ربط سلة المشتريات (Cart API) • حساب الفاتورة ديناميكياً • عزل إعادة البناء (No Full Rebuild) • معمارية الميزات النظيفة
+            توضيح شامل لكل الملفات، الدوال، الحسابات الرياضية، ومعالجة الأخطاء والافتراضات الهندسية
           </div>
           <div class="cover-description">
-            توضح هذه الوثيقة التفصيلية كافة التغييرات والتحسينات البرمجية التي تم تطبيقها على المشروع، بما يشمل إنشاء وتفعيل فرع عمل مخصص، عزل واستدعاء واجهات برمجة التطبيقات (APIs) المستخرجة من Postman Collection، تصميم طبقات النواة (Core Layer)، وتطبيق معمارية Clean Architecture الكاملة (Data, Domain, Presentation) على كافة ميزات التطبيق (Auth, Home, Categories, Cart, Profile) مع ضمان التوافقية العكسية وخلو الكود تماماً من أي أخطاء برمجية.
+            تم إعداد هذا المستند لمساعدتك في فهم كل تفصيلة كود تم تطبيقها في المشروع بدون أي تعقيد. يغطي الشرح الملفات المضافة والمعدلة في السلة والفاتورة، تدفق عملية Add to Cart من زر الشاشة وصولاً للـ API، طريقة حساب الفاتورة (Subtotal, Shipping, Tax, Total)، مسار البيانات من السلة إلى الدفع، حل مشكلة الـ Rebuild والإنترنت في نسخة الـ APK، مع بيان دور كل كلاس في الـ Clean Architecture.
           </div>
         </div>
 
@@ -379,7 +376,7 @@
               <span class="meta-value">Flutter BLoC / Cubit (Pragmatic Clean Arch)</span>
             </div>
             <div class="meta-item">
-              <span class="meta-label">حالة الفحص والتحليل (Static Analysis):</span>
+              <span class="meta-label">فحص الجودة والتحليل (Static Analysis):</span>
               <span class="meta-value" style="color: #03543F; font-weight: bold;">0 Errors, 0 Warnings (PASSED)</span>
             </div>
           </div>
@@ -387,325 +384,335 @@
       </div>
 
       <div class="cover-footer">
-        <div><strong>التطبيق:</strong> Avon Cosmetics Mobile Application</div>
+        <div><strong>المشروع:</strong> Avon Cosmetics Mobile Application</div>
         <div><strong>تاريخ التوثيق:</strong> أكتوبر 2026</div>
         <div><strong>نظام التشغيل:</strong> Flutter 3.x / Dart 3.x</div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== PAGE 2: EXECUTIVE SUMMARY & ARCHITECTURE ==================== -->
+  <!-- ==================== PAGE 2: POINT 1 & POINT 2 ==================== -->
   <div class="page">
-    <h1>1. الملخص التنفيذي والأهداف المحققة</h1>
+    <h1>1. الملفات المضافة والمعدلة في السلة والفاتورة (Cart & Invoice Files)</h1>
     <p>
-      تم تنفيذ تحول معماري جذري وشامل لتطبيق مستحضرات التجميل، حيث تم الانتقال من كود يعتمد على استدعاءات الشبكة المباشرة داخل واجهات المستخدم (Tight Coupling & Monolithic Views) إلى بنية معمارية نظيفة (Clean Architecture) مع فصل تام للمسؤوليات (Separation of Concerns).
-    </p>
-
-    <div class="card card-accent avoid-break">
-      <div class="card-title">🎯 أبرز المتطلبات التي تم إنجازها بنجاح:</div>
-      <ul>
-        <li><strong>إنشاء فرع منفصل على Git:</strong> إنشاء ودفع فرع <code>feature/cart-api-integration</code> لضمان أمان الفرع الرئيسي وسهولة المراجعة.</li>
-        <li><strong>ربط Cart API من ملف Postman (<code>avon.json</code>):</strong> ربط المسارات <code>/api/Cart</code> (عرض)، <code>/api/Cart/add</code> (إضافة)، <code>/api/Cart/update</code> (تعديل كمية)، و <code>/api/Cart/remove/{id}</code> (حذف).</li>
-        <li><strong>منع إعادة بناء الصفحة بالكامل (Fix Full Page Rebuild):</strong> عزل زر الإضافة في ويدجت مستقل <code>_AddToCartButton</code> واستخدام خاصية <code>buildWhen</code> في صفحة Home لمنع اختفاء المحتوى أو إعادة تحميل الشاشة.</li>
-        <li><strong>حساب الفاتورة ديناميكياً (Dynamic Invoice):</strong> احتساب المجموع الفرعي ($Subtotal = \sum Price \times Quantity$) والشحن والضرائب والإجمالي الفعلي، وتمريره بسلاسة لشاشة إتمام الشراء (Checkout).</li>
-        <li><strong>تطبيق Clean Architecture على كامل المشروع:</strong> إنشاء طبقات <code>Data</code> (Models + RemoteDataSources + RepoImpls)، و <code>Domain</code> (Abstract Repositories)، و <code>Presentation</code> (Cubits + States + Views) لكافة ميزات التطبيق.</li>
-      </ul>
-    </div>
-
-    <h1>2. المخطط الهيكلي للبنية المعمارية النظيفة (Clean Architecture Flow)</h1>
-    <p>
-      يعتمد تدفق البيانات في التطبيق على مبدأ التبعية الأحادية، حيث لا تعتمد طبقات العمل (Domain) على أي تفاصيل تقنية خارجية، بينما تتواصل واجهات المستخدم مع المتحكمات (Cubits) فقط.
-    </p>
-
-    <div class="diagram avoid-break">
-      <div class="diagram-step">
-        <div class="diagram-step-title">Presentation Layer</div>
-        <div class="diagram-step-sub">Widgets & Screens</div>
-        <span class="pill pill-info">UI & Listeners</span>
-      </div>
-      <div class="diagram-arrow">&larr;</div>
-      <div class="diagram-step highlight">
-        <div class="diagram-step-title">State Management</div>
-        <div class="diagram-step-sub">Cubits & States</div>
-        <span class="pill pill-primary">Reactive Logic</span>
-      </div>
-      <div class="diagram-arrow">&larr;</div>
-      <div class="diagram-step">
-        <div class="diagram-step-title">Domain Layer</div>
-        <div class="diagram-step-sub">Repository Contracts</div>
-        <span class="pill pill-success">Pure Dart</span>
-      </div>
-      <div class="diagram-arrow">&larr;</div>
-      <div class="diagram-step">
-        <div class="diagram-step-title">Data Layer</div>
-        <div class="diagram-step-sub">DataSources & Models</div>
-        <span class="pill pill-info">Dio & Cache</span>
-      </div>
-    </div>
-
-    <h2>تفصيل طبقات البنية المعمارية:</h2>
-    <div class="grid-2 avoid-break">
-      <div class="feature-box">
-        <h4>1. طبقة النواة المشتركة (Core Layer)</h4>
-        <p>تحتوي على العناصر العامة التي تشترك فيها كافة أجزاء التطبيق دون الارتباط بميزة محددة:</p>
-        <ul>
-          <li><code>ApiEndpoints</code>: ثوابت مسارات وعناوين الخادم الموحدة.</li>
-          <li><code>DioHelper</code>: عميل HTTP معدّ مسبقاً مع Bearer Token تلقائي.</li>
-          <li><code>CacheHelper</code>: إدارة التخزين المحلي الآمن عبر SharedPreferences.</li>
-          <li><code>Failures</code>: تصنيف أخطاء الشبكة والخادم والتفويض.</li>
-        </ul>
-      </div>
-
-      <div class="feature-box">
-        <h4>2. طبقات الميزات (Feature Layers)</h4>
-        <p>كل ميزة (Auth, Home, Categories, Cart, Profile) تنقسم داخلياً إلى:</p>
-        <ul>
-          <li><strong>Data:</strong> تشمل <code>Model</code> لتحويل JSON، و <code>RemoteDataSource</code> لاستدعاء الـ API، و <code>RepositoryImpl</code> لتنفيذ العقود.</li>
-          <li><strong>Domain:</strong> تشمل <code>Repository</code> المجرد كعقد رسمي.</li>
-          <li><strong>Presentation:</strong> تشمل <code>Cubit</code> لإدارة العمليات وإطلاق الـ <code>States</code> للواجهات.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== PAGE 3: CART API & REBUILD FIX ==================== -->
-  <div class="page">
-    <h1>3. ميزة سلة المشتريات (Cart API) وحل مشكلة إعادة البناء</h1>
-    <p>
-      كانت سلة المشتريات تعتمد سابقاً على قيم وهمية (Mock Data) دون اتصال فعلي بالخادم. تم ربطها بالكامل مع الـ Endpoints المستخرجة من ملف الـ Postman (<code>avon.json</code>) وفقاً للمواصفات التالية:
+      دي كل الملفات اللي اتعاملنا معاها عشان نربط الـ Cart ونظبط حسابات الفاتورة من ملف الـ Postman Collection، مع وظيفة كل ملف بالتحديد:
     </p>
 
     <table>
       <thead>
         <tr>
-          <th>العملية (Operation)</th>
-          <th>طريقة الإرسال (Method)</th>
-          <th>المسار (Endpoint)</th>
-          <th>طريقة تمرير المعاملات (Parameters)</th>
+          <th style="width: 32%;">اسم الملف والمسار</th>
+          <th style="width: 14%;">نوع الملف</th>
+          <th>وظيفة الملف في المشروع</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>عرض السلة (Get Cart)</strong></td>
-          <td><code>GET</code></td>
-          <td><code>/api/Cart</code></td>
-          <td>Header: <code>Authorization: Bearer &lt;Token&gt;</code></td>
+          <td><code>lib/core/network/api_endpoints.dart</code></td>
+          <td><span class="pill pill-info">Core Endpoint</span></td>
+          <td>متعرف جواه الثوابت الموحدة لعناوين الـ Cart: <code>cart</code>, <code>cartAdd</code>, <code>cartUpdate</code>, <code>cartRemove</code>.</td>
         </tr>
         <tr>
-          <td><strong>إضافة منتج (Add Item)</strong></td>
-          <td><code>POST</code></td>
-          <td><code>/api/Cart/add</code></td>
-          <td>Query Parameters: <code>?productId=1&quantity=1</code></td>
+          <td><code>lib/features/cart/data/models/cart_item_model.dart</code></td>
+          <td><span class="pill pill-success">Data Model</span></td>
+          <td>بيمثل شكل عنصر السلة، وفيه <code>fromJson</code> بتستقبل الـ JSON سواء كان راجع Flat أو Nested جواه أوبجكت منتج.</td>
         </tr>
         <tr>
-          <td><strong>تعديل الكمية (Update Item)</strong></td>
-          <td><code>PUT</code></td>
-          <td><code>/api/Cart/update</code></td>
-          <td>Query Parameters: <code>?productId=1&quantity=2</code></td>
+          <td><code>lib/features/cart/data/datasources/cart_remote_data_source.dart</code></td>
+          <td><span class="pill pill-success">Data Source</span></td>
+          <td>المسؤول الوحيد عن استدعاءات الشبكة للـ Cart عبر <code>DioHelper</code> (Get, Add, Update, Remove).</td>
         </tr>
         <tr>
-          <td><strong>حذف منتج (Remove Item)</strong></td>
-          <td><code>DELETE</code></td>
-          <td><code>/api/Cart/remove/{productId}</code></td>
-          <td>Path Variable: <code>{productId}</code></td>
+          <td><code>lib/features/cart/domain/repositories/cart_repository.dart</code></td>
+          <td><span class="pill pill-primary">Domain Repo</span></td>
+          <td>العقد (Interface) اللي بيحدد العمليات المتاحة للسلة دون الارتباط بأي تفاصيل تخص Dio أو الشبكة.</td>
+        </tr>
+        <tr>
+          <td><code>lib/features/cart/data/repositories/cart_repository_impl.dart</code></td>
+          <td><span class="pill pill-success">Repo Impl</span></td>
+          <td>تنفيذ العقد، بيكلم الـ DataSource ويفحص النجاح ويحول البيانات لـ <code>List&lt;CartItemModel&gt;</code>.</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/cart/cubit.dart</code></td>
+          <td><span class="pill pill-primary">Presentation Logic</span></td>
+          <td>إدارة حالة السلة: جلب العناصر، التعديل التفاؤلي الفوري، الحذف، وحساب الفاتورة (Subtotal, Tax, Shipping, Total).</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/cart/states.dart</code></td>
+          <td><span class="pill pill-primary">Cubit States</span></td>
+          <td>حالات السلة: <code>CartLoadingState</code>, <code>CartSuccessState</code>, <code>CartFailedState</code>, وغيرها.</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/cart/view.dart</code></td>
+          <td><span class="pill pill-info">UI Screen</span></td>
+          <td>واجهة السلة: بتعرض الليستة بالـ <code>CustomItemCart</code>، وأزرار <code>+</code> و <code>-</code>، وكارت الفاتورة، وزرار الدفع.</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/cart/checkout.dart</code></td>
+          <td><span class="pill pill-info">UI Screen</span></td>
+          <td>شاشة إتمام الدفع (الفاتورة): استقبلت <code>subtotal</code> وبتحسب الإجمالي والضريبة والشحن ديناميكياً.</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/home/customs_widget.dart</code></td>
+          <td><span class="pill pill-info">UI Widget</span></td>
+          <td>عزل زرار الإضافة <code>_AddToCartButton</code> عشان يغير الـ Spinner بتاعه فقط وميعملش Rebuild للشاشة.</td>
+        </tr>
+        <tr>
+          <td><code>lib/views/pages/home/view.dart</code></td>
+          <td><span class="pill pill-info">UI Screen</span></td>
+          <td>إضافة خاصية <code>buildWhen</code> لمنع إعادة رسم الصفحة الرئيسية نهائياً وقت الضغط على زر السلة.</td>
         </tr>
       </tbody>
     </table>
 
-    <h2>حل مشكلة وميض الصفحة وإعادة بنائها بالكامل (Page Rebuild Fix)</h2>
-    <div class="card card-accent avoid-break">
-      <div class="card-title">🔍 تشخيص المشكلة السابقة:</div>
-      <p>
-        عند الضغط على زر "إضافة إلى السلة" من الصفحة الرئيسية، كان الـ <code>HomeCubit</code> يطلق حالة عامة <code>HomeAddToCartLoadingState</code>. وبما أن صفحة <code>HomeView</code> كانت تستمع للحالة بدون شرط تصفية (<code>buildWhen</code>)، كان استدعاء <code>build()</code> يُعاد بالكامل وتسقط الشاشة في الحالة الافتراضية <code>Text("Please call the method")</code> مما يسبب اختفاء المحتوى ووميضاً مزعجاً للمستخدم.
-      </p>
-      <div class="card-title" style="margin-top: 10px;">✅ الحل الهندسي المنفذ:</div>
-      <ol>
-        <li><strong>عزل زر الإضافة في ويدجت مستقل:</strong> تم إنشاء <code>_AddToCartButton</code> داخل <code>customs_widget.dart</code> مع حالة تحميل محلية (<code>_isLoading</code>) لتحديث مؤشر الزر فقط دون التأثير على البطاقة أو الشاشة.</li>
-        <li><strong>استخدام شرط التصفية (<code>buildWhen</code>):</strong> تمت إضافة <code>buildWhen: (prev, current) => current is HomeSuccessState || current is HomeLoadingState</code> في <code>HomeView</code> لضمان عدم إعادة رسم الصفحة الرئيسية نهائياً عند عمليات السلة.</li>
-      </ol>
-    </div>
-
-    <h2>الحساب الديناميكي للفاتورة (Dynamic Invoice Calculation)</h2>
+    <h1>2. معمارية Clean Architecture المطبقة فعلياً في المشروع</h1>
     <p>
-      تم بناء الحسابات المالية داخل <code>CartCubit</code> بشكل فوري وتفاعلي، حيث يتم تحديث الفاتورة فورياً محلياً وبشكل متزامن مع الخادم:
+      المشروع متقسم بأسلوب <strong>Feature-First Pragmatic Clean Architecture</strong>، يعني كل ميزة (Feature) مستقلة ومتقسمة إلى 3 طبقات:
     </p>
-    <pre><code>// معادلة حساب المجموع الفرعي ديناميكياً داخل CartCubit:
-double get subtotal => items.fold(0.0, (sum, item) => sum + (item.price * item.quantity));
-double get shippingFee => items.isEmpty ? 0.0 : 20.0;
-double get tax => subtotal * 0.14; // 14% ضريبة القيمة المضافة
-double get total => subtotal + shippingFee + tax;</code></pre>
 
-    <div class="card avoid-break">
-      <div class="card-title">⚡ التحديث التفاؤلي الفوري (Optimistic UI Updates):</div>
-      <p>
-        عند قيام المستخدم بزيادة أو إنقاص كمية عنصر داخل السلة، يتم تعديل الكمية وإعادة حساب الفاتورة محلياً في نفس اللحظة (Zero Latency) مع إرسال الطلب إلى الـ API في الخلفية. وفي حال حدوث أي خطأ في الشبكة، يتم التراجع عن التعديل وإخطار المستخدم برسالة تنبيهية.
-      </p>
-    </div>
-  </div>
+    <div class="grid-2 avoid-break">
+      <div class="feature-box">
+        <h4>1. طبقة البيانات (Data Layer)</h4>
+        <p>مسؤولة عن جلب البيانات وتحويلها من وإلى السيرفر والتخزين المحلي:</p>
+        <ul>
+          <li><strong>Models:</strong> زي <code>CartItemModel</code> و <code>ProductModel</code>، بتحول الـ JSON لأوبجكت Dart.</li>
+          <li><strong>DataSources:</strong> زي <code>CartRemoteDataSourceImpl</code>، بتنفذ طلبات HTTP عبر <code>DioHelper</code>.</li>
+          <li><strong>Repositories Impl:</strong> زي <code>CartRepositoryImpl</code>، بتنسق بين الـ DataSources وبترجع بيانات معالجة للـ Domain.</li>
+        </ul>
+      </div>
 
-  <!-- ==================== PAGE 4: FEATURE BREAKDOWN ==================== -->
-  <div class="page">
-    <h1>4. تفصيل الميزات المنفذة وفق معمارية Clean Architecture</h1>
-
-    <div class="feature-box avoid-break" style="margin-bottom: 12px;">
-      <h4>🔐 1. ميزة المصادقة والحسابات (Authentication Feature)</h4>
-      <p><strong>المسار:</strong> <code>lib/features/auth/</code> و <code>lib/views/auth/</code></p>
-      <ul>
-        <li><strong>Data Layer:</strong> <code>AuthRemoteDataSource</code> للاتصال بمسارات <code>/api/Account/Login</code> و <code>/Register</code> و <code>/verify-code</code> و <code>/reset-password</code>. الموديل <code>AuthResponseModel</code> يستقبل كائن المستخدم والتوكن.</li>
-        <li><strong>Domain Layer:</strong> <code>AuthRepository</code> يحدد العقود القياسية لعمليات الدخول والتسجيل والتحقق.</li>
-        <li><strong>Presentation Layer:</strong> <code>LogInCubit</code>, <code>RegisterCubit</code>, <code>VerifyCubit</code>, <code>ForgotPasswordCubit</code>, <code>CreatePasswordCubit</code>. تم ربط التوكن وتخزينه تلقائياً في <code>CacheHelper</code> لتغذية الـ Headers في باقي الطلبات.</li>
-      </ul>
+      <div class="feature-box">
+        <h4>2. طبقة منطق العمل (Domain Layer)</h4>
+        <p>أنقى طبقة في المشروع، ملهاش علاقة بـ Flutter أو Dio أو JSON:</p>
+        <ul>
+          <li><strong>Repositories Interfaces:</strong> زي <code>CartRepository</code> و <code>HomeRepository</code>. دي عبارة عن عقود (Abstract Classes) بتحدد أسماء الدوال اللي طبقات العرض محتاجاها بدون ما تهتم إزاي هتتجاب من السيرفر.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="feature-box avoid-break" style="margin-bottom: 12px;">
-      <h4>🏠 2. ميزة الصفحة الرئيسية والمنتجات (Home Feature)</h4>
-      <p><strong>المسار:</strong> <code>lib/features/home/</code> و <code>lib/views/pages/home/</code></p>
-      <ul>
-        <li><strong>Data Layer:</strong> <code>HomeRemoteDataSource</code> يستدعي مسارات جلب المنتجات <code>/api/Products</code> مع تحويلها عبر <code>ProductModel</code> (دعم الصور والأسعار والتقييمات).</li>
-        <li><strong>Domain Layer:</strong> <code>HomeRepository</code> يقدم واجهة تجريدية للحصول على قائمة المنتجات.</li>
-        <li><strong>Presentation Layer:</strong> <code>HomeCubit</code> يستقبل الـ Repository كـ Dependency Injection، ويدير حالات التحميل والنجاح والفشل، مع توفير زر الإضافة المعزول.</li>
-      </ul>
-    </div>
-
-    <div class="feature-box avoid-break" style="margin-bottom: 12px;">
-      <h4>📁 3. ميزة التصنيفات والفلترة (Categories Feature)</h4>
-      <p><strong>المسار:</strong> <code>lib/features/categories/</code> و <code>lib/views/pages/categories/</code></p>
-      <ul>
-        <li><strong>Data Layer:</strong> <code>CategoriesRemoteDataSource</code> لجلب قائمة الأقسام من <code>/api/Categories</code>، بالإضافة لمنتجات قسم محدد. الموديل <code>CategoryModel</code>.</li>
-        <li><strong>Domain Layer:</strong> <code>CategoriesRepository</code> كواجهة مجردة.</li>
-        <li><strong>Presentation Layer:</strong> <code>CategoriesCubit</code> مع حالات <code>CategoriesLoadingState</code>, <code>CategoriesSuccessState</code>, <code>CategoriesFailedState</code>.</li>
-      </ul>
-    </div>
-
-    <div class="feature-box avoid-break" style="margin-bottom: 12px;">
-      <h4>🛒 4. ميزة سلة المشتريات وإتمام الدفع (Cart & Checkout Feature)</h4>
-      <p><strong>المسار:</strong> <code>lib/features/cart/</code> و <code>lib/views/pages/cart/</code></p>
-      <ul>
-        <li><strong>Data Layer:</strong> <code>CartRemoteDataSource</code> يغطي كافة عمليات السلة مع دعم استجابات JSON المسطحة والمتداخلة (Flat & Nested JSON) داخل <code>CartItemModel</code>.</li>
-        <li><strong>Domain Layer:</strong> <code>CartRepository</code> يمثل طبقة الأمان وعزل تفاصيل Dio.</li>
-        <li><strong>Presentation Layer:</strong> <code>CartCubit</code> يدير العمليات وحساب الفاتورة بدقة، وتمرير المجموع الفعلي إلى شاشة <code>CheckoutView</code> مع زر تنفيذ الطلب.</li>
-      </ul>
-    </div>
-
-    <div class="feature-box avoid-break">
-      <h4>👤 5. ميزة الملف الشخصي (Profile Feature)</h4>
-      <p><strong>المسار:</strong> <code>lib/features/profile/</code> و <code>lib/views/pages/profile/</code></p>
-      <ul>
-        <li><strong>Data Layer:</strong> <code>ProfileRemoteDataSource</code> لجلب وتحديث بيانات الملف الشخصي <code>UserProfileModel</code> من الخادم.</li>
-        <li><strong>Domain Layer:</strong> <code>ProfileRepository</code>.</li>
-        <li><strong>Presentation Layer:</strong> <code>ProfileCubit</code> لعرض بيانات المستخدم وتسجيل الخروج الآمن بمسح التوكن من الـ Cache ونقل المستخدم لصفحة الدخول.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- ==================== PAGE 5: FILE STRUCTURE & QUALITY ==================== -->
-  <div class="page">
-    <h1>5. الهيكل التنظيمي للملفات في المشروع (Project Structure)</h1>
-    <p>تم ترتيب الملفات وفق أحدث المعايير البرمجية لـ Clean Architecture في Flutter مع الحفاظ على التوافق الكامل:</p>
-
-    <pre><code>lib/
-├── core/
-│   ├── error/
-│   │   └── failures.dart             # كلاسات معالجة الأخطاء (Server, Network, Auth)
-│   ├── network/
-│   │   └── api_endpoints.dart        # عناوين الخادم والمسارات الموحدة
-│   ├── storage/
-│   │   └── cache_helper.dart         # تخزين واسترجاع التوكن وبيانات الجلسة
-│   └── logic/
-│       ├── dio_helper.dart           # تهيئة Dio وإضافة التوكن التلقائي
-│       └── helper_methods.dart       # دوال التنقل المساعدة
-├── features/
-│   ├── auth/
-│   │   ├── data/ (datasources, models, repositories)
-│   │   ├── domain/ (repositories)
-│   │   └── presentation/ (cubits)
-│   ├── cart/
-│   │   ├── data/ (datasources, models, repositories)
-│   │   └── domain/ (repositories)
-│   ├── home/
-│   │   ├── data/ (datasources, models, repositories)
-│   │   └── domain/ (repositories)
-│   ├── categories/
-│   │   ├── data/ (datasources, models, repositories)
-│   │   └── domain/ (repositories)
-│   └── profile/
-│       ├── data/ (datasources, models, repositories)
-│       └── domain/ (repositories)
-└── views/
-    ├── auth/                         # واجهات تسجيل الدخول والتحقق واستعادة كلمة المرور
-    └── pages/                        # شاشات Home, Cart, Categories, Profile المحدثة</code></pre>
-
-    <h1>6. حل مشكلة اتصال الإنترنت في حزم أندرويد (Android APK Network Fix)</h1>
     <div class="card card-accent avoid-break">
-      <div class="card-title">🔍 تشخيص مشكلة تسجيل الحساب في نسخة الـ APK:</div>
+      <div class="card-title">3. طبقة العرض وإدارة الحالة (Presentation Layer):</div>
       <p>
-        عند بناء التطبيق كـ APK وتشغيله خارج بيئة التطوير (Debug)، فشل التطبيق في إنشاء الحسابات والاتصال بالخادم. والسبب الهندسي الدقيق هو:
+        بتشمل الـ <strong>Cubits</strong> (زي <code>CartCubit</code> و <code>HomeCubit</code>) اللي بتستقبل أوامر المستخدم من الزراير، وتكلم الـ Repository، وتطلق <strong>States</strong>، والشاشات (Views & Widgets) اللي بتسمع للـ States وتعرض البيانات أو مؤشرات التحميل بدون أي كود شبكة أو Business Logic داخل شاشات الـ UI.
       </p>
-      <ul>
-        <li>ملف <code>android/app/src/main/AndroidManifest.xml</code> لم يكن يحتوي على تصريح الإنترنت <code>INTERNET</code> (حيث كانت فلاتر تضعه فقط في مجلد <code>debug</code> المخصص للتطوير).</li>
-        <li>أنظمة أندرويد 9 فما فوق (API 28+) تحظر أي حركة شبكة غير مشفرة أو شهادات غير موثقة ما لم يتم تفعيل <code>usesCleartextTraffic</code> و <code>networkSecurityConfig</code>.</li>
-      </ul>
-      <div class="card-title" style="margin-top: 10px;">✅ التعديلات المنفذة على ملفات أندرويد:</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3: POINT 3 & POINT 4 ==================== -->
+  <div class="page">
+    <h1>3. تتبع عملية Add to Cart خطوة بخطوة من الضغط للظهور في السلة</h1>
+    <p>
+      دي الرحلة الكاملة من لحظة ما المستخدم يضغط على الزرار الصغير فوق المنتج لحد ما يشوفه جواه السلة:
+    </p>
+
+    <div class="card card-accent avoid-break">
       <ol>
-        <li>إضافة تصاريح الشبكة الكاملة في <code>AndroidManifest.xml</code>:
-          <br><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code>
-          <br><code>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;</code>
-          <br><code>&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;</code>
+        <li>
+          <strong>المستخدم يدوس على الزرار في الصفحة الرئيسية:</strong>
+          <br>الملف: <code>lib/views/pages/home/customs_widget.dart</code>
+          <br>الكلاس: <code>_AddToCartButton</code> &larr; الدالة: <code>onPressed</code>.
         </li>
-        <li>إنشاء ملف تكوين أمان الشبكة <code>android/app/src/main/res/xml/network_security_config.xml</code> لتمكين حركة الشبكة وشهادات النظام بأمان.</li>
-        <li>ربط <code>android:networkSecurityConfig="@xml/network_security_config"</code> و <code>android:usesCleartextTraffic="true"</code> داخل وسم <code>&lt;application&gt;</code>.</li>
-        <li>ترقية <code>DioHelper</code> لمعالجة استثناءات الشبكة وعرض رسائل الخطأ التفصيلية بدلاً من رسالة عامة.</li>
+        <li>
+          <strong>تغيير حالة الزرار المحلية واستدعاء الـ Cubit:</strong>
+          <br>الزرار بيعمل <code>setState(() =&gt; _isLoading = true)</code> عشان يظهر Spinner صغير جواه هو بس.
+          <br>وبينادي الميثود: <code>HomeCubit.get(context).addToCart(widget.productId)</code>.
+        </li>
+        <li>
+          <strong>الـ Cubit يكلم الـ Repository:</strong>
+          <br>الملف: <code>lib/views/pages/home/cubit.dart</code>
+          <br>الميثود <code>addToCart(int productId)</code> بتنادي: <code>repository.addToCart(productId: productId)</code>.
+        </li>
+        <li>
+          <strong>الـ Repository تنادي الـ RemoteDataSource:</strong>
+          <br>الملف: <code>lib/features/home/data/repositories/home_repository_impl.dart</code>
+          <br>الميثود: <code>addToCart({required int productId, int quantity = 1})</code>
+          <br>بتنادي: <code>remoteDataSource.addToCart(productId: productId, quantity: quantity)</code>.
+        </li>
+        <li>
+          <strong>الـ DataSource يبعت الطلب عبر DioHelper:</strong>
+          <br>الملف: <code>lib/features/home/data/datasources/home_remote_data_source.dart</code>
+          <br>بيعمل استدعاء: <code>DioHelper.sendData(ApiEndpoints.cartAdd, params: {"productId": productId, "quantity": quantity}, requiresAuth: true)</code>.
+          <br>الطلب بيروح كـ <code>POST /api/Cart/add?productId=1&amp;quantity=1</code> ومعه توكن الدخول في الـ Headers.
+        </li>
+        <li>
+          <strong>السيرفر يرد بالنجاح والـ UI يتفاعل:</strong>
+          <br>الـ Response بترجع بـ 200 OK، والزرار في <code>customs_widget.dart</code> بيرجع <code>_isLoading = false</code>، وبيظهر للمستخدم <code>SnackBar</code> أخضر: <em>"Product added to cart successfully"</em>.
+          <br><strong>سر عدم الـ Rebuild:</strong> الـ <code>HomeView</code> فيها <code>buildWhen: (prev, current) =&gt; current is HomeSuccessState || current is HomeLoadingState</code>، فمش بتعيد رسم الشاشة نهائياً!
+        </li>
+        <li>
+          <strong>ظهور المنتج في السلة عند فتحها:</strong>
+          <br>الملف: <code>lib/views/pages/cart/view.dart</code>
+          <br>أول ما السلة تفتح، الـ <code>BlocProvider</code> بينادي <code>CartCubit()..getCart()</code>.
+          <br>الميثود بتنادي <code>CartRepositoryImpl.getCartItems()</code> &larr; <code>CartRemoteDataSourceImpl.getCart()</code> &larr; <code>GET /api/Cart</code>.
+          <br>البيانات بترجع وتتحول لـ <code>CartItemModel</code>، والـ <code>CartCubit</code> بيطلق <code>CartSuccessState</code>، والـ <code>ListView</code> تعرض المنتج فوراً.
+        </li>
       </ol>
     </div>
 
-    <h1>7. التحقق واختبارات الجودة (Verification & Quality Assurance)</h1>
-    <div class="card card-accent avoid-break">
-      <div class="card-title">✅ نتائج الفحص والتحليل البرمجي:</div>
-      <table>
-        <thead>
-          <tr>
-            <th>الأداة / المعيار</th>
-            <th>الأمر المنفذ</th>
-            <th>النتيجة</th>
-            <th>الملاحظات</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Dart Static Analysis</strong></td>
-            <td><code>dart analyze lib</code></td>
-            <td><span class="pill pill-success">0 Errors / 0 Warnings</span></td>
-            <td>تم حل كافة مشاكل التوافق والواردات غير المستخدمة</td>
-          </tr>
-          <tr>
-            <td><strong>Flutter Analyze</strong></td>
-            <td><code>flutter analyze</code></td>
-            <td><span class="pill pill-success">0 Errors / 0 Warnings</span></td>
-            <td>كود نظيف تماماً وخالٍ من الأخطاء والتحذيرات</td>
-          </tr>
-          <tr>
-            <td><strong>Android Permissions</strong></td>
-            <td><code>AndroidManifest.xml & Network XML</code></td>
-            <td><span class="pill pill-success">Configured & Verified</span></td>
-            <td>تصاريح الإنترنت مهيأة للـ Release والـ Debug على حد سواء</td>
-          </tr>
-          <tr>
-            <td><strong>Git Branching</strong></td>
-            <td><code>git status / git push</code></td>
-            <td><span class="pill pill-success">Pushed to Remote</span></td>
-            <td>الفرع <code>feature/cart-api-integration</code> متزامن تماماً</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h1>8. خلاصة النتائج والتوصيات</h1>
+    <h1>4. كيف يتم حساب الكمية والسعر والـ Total ومصدر كل قيمة؟</h1>
     <p>
-      أصبح التطبيق الآن يمتلك بنية معمارية قوية وقابلة للتوسع (Scalable & Maintainable)، مع اتصال آمن وموثوق بالإنترنت في كافة أوضاع التشغيل (Debug و Release APK).
+      كل الحسابات المالية بتتم ديناميكياً داخل <code>CartCubit</code> وبتتحدث فورياً في الواجهة:
     </p>
 
-    <div style="margin-top: 30px; text-align: center; color: #718096; font-size: 11px;">
-      — نهاية الوثيقة الهندسية — تم الإنشاء والتحقق آلياً لنظام Avon Cosmetics —
+    <table>
+      <thead>
+        <tr>
+          <th>القيمة</th>
+          <th>طريقة الحساب الرياضية</th>
+          <th>المصدر الأصلي للقيمة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>سعر المنتج (Price)</strong></td>
+          <td>قيمة فردية لكل قطعة (مثلاً $150.00)</td>
+          <td>راجعة من السيرفر عبر حقل <code>price</code> في <code>CartItemModel</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>الكمية (Quantity)</strong></td>
+          <td>قيمة عددية صحيحة (تزيد بـ <code>+</code> وتنقص بـ <code>-</code>)</td>
+          <td>راجعة مبدئياً من السيرفر، وتتعدل محلياً في الـ State عبر ميثود <code>updateQuantity</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>المجموع الفرعي (Subtotal)</strong></td>
+          <td><code>items.fold(0.0, (sum, i) =&gt; sum + (i.price * i.quantity))</code></td>
+          <td>محسوبة ديناميكياً داخل الـ <code>CartCubit</code> بتجميع (سعر كل منتج &times; كميته).</td>
+        </tr>
+        <tr>
+          <td><strong>الشحن (Shipping Fee)</strong></td>
+          <td><code>items.isEmpty ? 0.0 : 20.0</code></td>
+          <td>منطق عمل محلي (Business Logic): 20 جنيه لو السلة فيها عناصر، و 0 لو فاضية.</td>
+        </tr>
+        <tr>
+          <td><strong>الضريبة (Tax)</strong></td>
+          <td><code>subtotal * 0.14</code></td>
+          <td>محسوبة محلياً بنسبة ضريبة القيمة المضافة الرسمية (14% VAT).</td>
+        </tr>
+        <tr>
+          <td><strong>الإجمالي النهائي (Total)</strong></td>
+          <td><code>subtotal + shippingFee + tax</code></td>
+          <td>مجموع (المجموع الفرعي + مصاريف الشحن + قيمة الضريبة).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== PAGE 4: POINT 5 & POINT 6 ==================== -->
+  <div class="page">
+    <h1>5. مسار انتقال البيانات من Cart إلى Invoice (المصادر والتدفق)</h1>
+    <div class="card card-accent avoid-break">
+      <div class="card-title">❓ هل البيانات جاية من API ولا Local Storage ولا State موجودة في التطبيق؟</div>
+      <p>الإجابة الدقيقة بالتفصيل:</p>
+      <ul>
+        <li><strong>بيانات المنتجات والأسعار الأولية:</strong> جاية من <strong>الـ API</strong> عبر طلب <code>GET /api/Cart</code>.</li>
+        <li><strong>البيانات اللحظية أثناء الاستخدام:</strong> موجودة في <strong>الـ State الحية</strong> للتطبيق جوه الـ <code>CartCubit</code> في المتغير <code>List&lt;CartItemModel&gt; items</code>.</li>
+        <li><strong>حسابات الفاتورة (Subtotal, Shipping, Tax, Total):</strong> بتتحسب <strong>Live في الـ State</strong> وليست مخزنة في قاعدة بيانات.</li>
+        <li><strong>التخزين المحلي (Local Storage):</strong> وظيفته الوحيدة حفظ <code>token</code> المستخدم في <code>CacheHelper</code> عشان يصرح بالطلبات، لكن الفاتورة نفسها مش متخزنة محلياً في الـ SharedPreferences.</li>
+        <li><strong>طريقة الانتقال لشاشة الدفع (Invoice / Checkout):</strong>
+          بتتنقل كـ Parameter مباشر عبر دالة التنقل عند الضغط على زر Checkout:
+          <pre><code>// في كود CartView (lib/views/pages/cart/view.dart):
+goTo(page: CheckoutView(subtotal: cubit.subtotal));</code></pre>
+          شاشة <code>CheckoutView</code> بتستقبل الـ <code>subtotal</code> وتعيد حساب الشحن والضريبة والإجمالي وتطبع الفاتورة النهائية للمستخدم.
+        </li>
+      </ul>
+    </div>
+
+    <h1>6. دور كل Cubit و State و Repository و DataSource و Model في المشروع</h1>
+    <div class="grid-2 avoid-break">
+      <div class="feature-box">
+        <h4>1. الـ Models</h4>
+        <ul>
+          <li><code>CartItemModel</code>: تحويل JSON عنصر السلة لكائن Dart وحساب <code>subTotal</code>.</li>
+          <li><code>ProductModel</code>: تفكيك بيانات المنتجات (الاسم، السعر، الصورة، الوصف).</li>
+          <li><code>AuthResponseModel</code>: قراءة استجابة السيرفر، التوكن، وحالة النجاح والرسائل.</li>
+        </ul>
+      </div>
+
+      <div class="feature-box">
+        <h4>2. الـ DataSources</h4>
+        <ul>
+          <li><code>CartRemoteDataSource</code>: تنفيذ طلبات الـ HTTP المباشرة للسلة عبر Dio.</li>
+          <li><code>HomeRemoteDataSource</code>: طلبات جلب المنتجات وإضافة عنصر للسلة.</li>
+          <li><code>AuthRemoteDataSource</code>: طلبات التسجيل وتسجيل الدخول والتحقق واستعادة كلمة المرور.</li>
+        </ul>
+      </div>
+
+      <div class="feature-box">
+        <h4>3. الـ Repositories</h4>
+        <ul>
+          <li><code>CartRepository</code> و <code>CartRepositoryImpl</code>: وسيط البيانات للسلة، بيفحص كود الاستجابة ويحول البيانات لموديلات نظيفة.</li>
+          <li><code>HomeRepository</code> و <code>HomeRepositoryImpl</code>: عزل منطق جلب منتجات المتجر عن الشاشات.</li>
+          <li><code>AuthRepository</code> و <code>AuthRepositoryImpl</code>: وسيط المصادقة مع حفظ التوكن في <code>CacheHelper</code>.</li>
+        </ul>
+      </div>
+
+      <div class="feature-box">
+        <h4>4. الـ Cubits & States</h4>
+        <ul>
+          <li><code>CartCubit</code>: العقل المدبر للسلة، يدير الليستة والكميات والتحديث التفاؤلي وحساب الفاتورة.</li>
+          <li><code>CartStates</code>: تطلق إشعارات للـ UI: تحميل، نجاح، فشل، تعديل، وحذف.</li>
+          <li><code>HomeCubit</code>: إدارة منتجات الشاشة الرئيسية وحالات التحميل والنجاح.</li>
+          <li><code>RegisterCubit</code> / <code>LogInCubit</code>: إدارة فورم التسجيل والتحقق.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 5: POINT 7 & POINT 8 & ANDROID ==================== -->
+  <div class="page">
+    <h1>7. معالجة الأخطاء وحالات Loading و Success و Failure</h1>
+    <div class="card card-accent avoid-break">
+      <div class="card-title">🛡️ كيف يتعامل التطبيق مع الأخطاء والحالات المختلفة؟</div>
+      <ul>
+        <li><strong>أخطاء الشبكة والاتصال في <code>DioHelper</code>:</strong>
+          تم بناء ميثود <code>_handleDioError</code> اللي بتفحص نوع الـ <code>DioException</code>:
+          لو مهلة الاتصال انتهت (Timeout) بترجع: <em>"Connection timed out. Please check your internet connection."</em>.
+          ولو السيرفر غير متاح أو مفيش نت بترجع رسالة واضحة، ولو السيرفر رجع خطأ 400 أو 422 بتستخرج نص الخطأ من حقول <code>message</code> أو <code>errors</code> في الـ JSON.
+        </li>
+        <li><strong>حالات التحميل (Loading States):</strong>
+          إطلاق <code>LoadingState</code> في الكيوبت، وده بيخلي الـ UI يعرض مؤشر تحميل (CircularProgressIndicator) سواء في الزرار أو في نص الشاشة لمنع المستخدم من تكرار الضغط.
+        </li>
+        <li><strong>حالات النجاح (Success States):</strong>
+          إطلاق <code>SuccessState</code> مع تحديث البيانات المعروضة في الشاشة أو الانتقال للشاشة التالية بسلاسة.
+        </li>
+        <li><strong>حالات الفشل (Failure States):</strong>
+          إطلاق <code>FailedState(message: ...)</code>، والـ <code>BlocConsumer</code> أو <code>BlocListener</code> بيستقبل الرسالة ويعرضها في <code>SnackBar</code> أحمر منسق وواضح للمستخدم دون أن ينهار التطبيق (Crash-Free).
+        </li>
+      </ul>
+    </div>
+
+    <h1>8. الافتراضات الهندسية والمشاكل المحتملة في الكود (ملاحظات هندسية)</h1>
+    <div class="card avoid-break">
+      <div class="card-title">⚠️ نقاط وافتراضات يجب الانتباه لها مستقبلاً (من غير تعديل الكود):</div>
+      <ol>
+        <li><strong>قيم الشحن والضريبة الثابتة (Hardcoded Values):</strong>
+          مصاريف الشحن (20.0) ونسبة الضريبة (14%) مكتوبة كقيم ثابتة في الكيوبت وشاشة الـ Checkout. مستقبلاً لو السيرفر بيحسب الشحن حسب عنوان العميل أو المنطقة، يفضل إن القيمة تيجي مباشرة من الـ API.
+        </li>
+        <li><strong>تنوع استجابة الـ Cart من السيرفر:</strong>
+          السيرفر أحياناً بيرجع السلة كـ Array مباشر <code>[{...}]</code> وأحياناً كـ Object جواه مفتاح <code>items</code>. الكود الحالي في <code>CartItemModel</code> بيتعامل بمرونة مع الشكلين، لكن لو السيرفر غير اسم المفتاح في المستقبل قد يتطلب تحديث الـ parser.
+        </li>
+        <li><strong>مزامنة السلة بين الصفحات (Realtime Sync):</strong>
+          عند إضافة منتج من الهوم، بيتبعت للسيرفر، ولما تفتح شاشة الكارت بتعمل <code>getCart()</code> فبيظهر. لكن لو شاشة الكارت كانت مفتوحة أصلاً في الـ Stack في الخلفية، مش هتتحدث تلقائياً غير لما تعمل سحب لأسفل (Pull to refresh) لأن مفيش Socket أو Global Event Bus يربط بينهم لحظياً.
+        </li>
+        <li><strong>تجديد التوكن التلقائي (Auto Token Refresh):</strong>
+          التوكن بيتخزن في <code>CacheHelper</code>، لكن لو انتهت صلاحيته ورجع السيرفر خطأ <code>401 Unauthorized</code>، مفيش Interceptor آلي يطلب Refresh Token في الخلفية، بل بيطلب من المستخدم تسجيل الدخول مرة تانية.
+        </li>
+      </ol>
+    </div>
+
+    <h1>9. ملفات أندرويد وحل مشكلة الإنترنت في نسخة الـ APK</h1>
+    <div class="card card-accent avoid-break">
+      <div class="card-title">📱 سبب المشكلة وحلها النهائي:</div>
+      <p>
+        ملف <code>android/app/src/main/AndroidManifest.xml</code> مكانش فيه تصريح <code>INTERNET</code> لأن فلاتر بتحطه افتراضياً في فولدر <code>debug</code> بس. لما بتعمل APK للإنتاج، نظام أندرويد بيحجب أي اتصال خارجي برمز خطأ <code>Permission denied</code>.
+      </p>
+      <p>
+        <strong>الحل:</strong> تم وضع تصاريح <code>INTERNET</code> و <code>ACCESS_NETWORK_STATE</code> في الـ Manifest الرئيسي، وإنشاء ملف <code>network_security_config.xml</code> لتمكين حركة الشبكة وتوثيق الشهادات، وأصبح الـ APK يعمل بكفاءة تامة.
+      </p>
+    </div>
+
+    <div style="margin-top: 25px; text-align: center; color: #718096; font-size: 11px;">
+      — تم التوثيق الهندسي بالكامل — مشروع Avon Cosmetics App — أكتوبر 2026 —
     </div>
   </div>
 
