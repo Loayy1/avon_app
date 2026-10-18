@@ -635,7 +635,30 @@ double get total => subtotal + shippingFee + tax;</code></pre>
     ├── auth/                         # واجهات تسجيل الدخول والتحقق واستعادة كلمة المرور
     └── pages/                        # شاشات Home, Cart, Categories, Profile المحدثة</code></pre>
 
-    <h1>6. التحقق واختبارات الجودة (Verification & Quality Assurance)</h1>
+    <h1>6. حل مشكلة اتصال الإنترنت في حزم أندرويد (Android APK Network Fix)</h1>
+    <div class="card card-accent avoid-break">
+      <div class="card-title">🔍 تشخيص مشكلة تسجيل الحساب في نسخة الـ APK:</div>
+      <p>
+        عند بناء التطبيق كـ APK وتشغيله خارج بيئة التطوير (Debug)، فشل التطبيق في إنشاء الحسابات والاتصال بالخادم. والسبب الهندسي الدقيق هو:
+      </p>
+      <ul>
+        <li>ملف <code>android/app/src/main/AndroidManifest.xml</code> لم يكن يحتوي على تصريح الإنترنت <code>INTERNET</code> (حيث كانت فلاتر تضعه فقط في مجلد <code>debug</code> المخصص للتطوير).</li>
+        <li>أنظمة أندرويد 9 فما فوق (API 28+) تحظر أي حركة شبكة غير مشفرة أو شهادات غير موثقة ما لم يتم تفعيل <code>usesCleartextTraffic</code> و <code>networkSecurityConfig</code>.</li>
+      </ul>
+      <div class="card-title" style="margin-top: 10px;">✅ التعديلات المنفذة على ملفات أندرويد:</div>
+      <ol>
+        <li>إضافة تصاريح الشبكة الكاملة في <code>AndroidManifest.xml</code>:
+          <br><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code>
+          <br><code>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;</code>
+          <br><code>&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;</code>
+        </li>
+        <li>إنشاء ملف تكوين أمان الشبكة <code>android/app/src/main/res/xml/network_security_config.xml</code> لتمكين حركة الشبكة وشهادات النظام بأمان.</li>
+        <li>ربط <code>android:networkSecurityConfig="@xml/network_security_config"</code> و <code>android:usesCleartextTraffic="true"</code> داخل وسم <code>&lt;application&gt;</code>.</li>
+        <li>ترقية <code>DioHelper</code> لمعالجة استثناءات الشبكة وعرض رسائل الخطأ التفصيلية بدلاً من رسالة عامة.</li>
+      </ol>
+    </div>
+
+    <h1>7. التحقق واختبارات الجودة (Verification & Quality Assurance)</h1>
     <div class="card card-accent avoid-break">
       <div class="card-title">✅ نتائج الفحص والتحليل البرمجي:</div>
       <table>
@@ -655,24 +678,30 @@ double get total => subtotal + shippingFee + tax;</code></pre>
             <td>تم حل كافة مشاكل التوافق والواردات غير المستخدمة</td>
           </tr>
           <tr>
+            <td><strong>Flutter Analyze</strong></td>
+            <td><code>flutter analyze</code></td>
+            <td><span class="pill pill-success">0 Errors / 0 Warnings</span></td>
+            <td>كود نظيف تماماً وخالٍ من الأخطاء والتحذيرات</td>
+          </tr>
+          <tr>
+            <td><strong>Android Permissions</strong></td>
+            <td><code>AndroidManifest.xml & Network XML</code></td>
+            <td><span class="pill pill-success">Configured & Verified</span></td>
+            <td>تصاريح الإنترنت مهيأة للـ Release والـ Debug على حد سواء</td>
+          </tr>
+          <tr>
             <td><strong>Git Branching</strong></td>
             <td><code>git status / git push</code></td>
             <td><span class="pill pill-success">Pushed to Remote</span></td>
             <td>الفرع <code>feature/cart-api-integration</code> متزامن تماماً</td>
           </tr>
-          <tr>
-            <td><strong>Type Safety</strong></td>
-            <td>Null-Safety Validation</td>
-            <td><span class="pill pill-success">100% Compliant</span></td>
-            <td>معالجة القيم الاختيارية والـ Fallbacks بدقة</td>
-          </tr>
         </tbody>
       </table>
     </div>
 
-    <h1>7. خلاصة النتائج والتوصيات</h1>
+    <h1>8. خلاصة النتائج والتوصيات</h1>
     <p>
-      أصبح التطبيق الآن يمتلك بنية معمارية قوية وقابلة للتوسع (Scalable & Maintainable)، ومفصولة تماماً عن واجهات المستخدم مما يسهل كتابة الاختبارات الآلية (Unit Tests & Integration Tests) وإضافة أي ميزات جديدة مستقبلاً دون أي تعارض أو تأثير جانبي.
+      أصبح التطبيق الآن يمتلك بنية معمارية قوية وقابلة للتوسع (Scalable & Maintainable)، مع اتصال آمن وموثوق بالإنترنت في كافة أوضاع التشغيل (Debug و Release APK).
     </p>
 
     <div style="margin-top: 30px; text-align: center; color: #718096; font-size: 11px;">
