@@ -20,11 +20,19 @@ class HomeView extends StatelessWidget {
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(13),
-                child: BlocBuilder(
+                child: BlocBuilder<HomeCubit, HomeStates>(
                   bloc: cubit,
+                  buildWhen: (previous, current) =>
+                      current is HomeLoadingState ||
+                      current is HomeSuccessState ||
+                      current is HomeFailedState,
                   builder: (context, state) {
                     if (state is HomeLoadingState) {
-                      return Center(child: CircularProgressIndicator(color: Color(0xffD75D72),));
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Color(0xffD75D72),
+                        ),
+                      );
                     } else if (state is HomeSuccessState) {
                       return SingleChildScrollView(
                         child: Column(

@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import '../cart/cubit.dart';
 import 'cubit.dart';
 import 'model.dart';
-import 'states.dart';
 
 class Items extends StatelessWidget {
   final ProductModel model;
@@ -14,7 +13,6 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<HomeCubit>(context);
     return Container(
       height: 240,
       width: 176,
@@ -52,60 +50,7 @@ class Items extends StatelessWidget {
               Positioned(
                 right: 6,
                 top: 6,
-                child: Container(
-                  height: 32,
-                  width: 32,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  // ---- زرار إضافة للـ cart فوق كل منتج ----
-                  child: BlocBuilder<HomeCubit, HomeStates>(
-                    builder: (context, state) {
-                      final isLoading = state is HomeAddToCartLoadingState &&
-                          state.productId == model.id;
-                      return IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: isLoading
-                            ? null
-                            : () async {
-                                final success = await cubit.addToCart(model);
-                                if (context.mounted) {
-                                  // تحديث السلة تلقائياً لو الكيوبت متاح في الـ context
-                                  try {
-                                    BlocProvider.of<CartCubit>(context).getCart();
-                                  } catch (_) {}
-
-                                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        success
-                                            ? "${model.nameEn} added to cart!"
-                                            : "Failed to add to cart. Please check your login.",
-                                      ),
-                                      duration: const Duration(seconds: 2),
-                                      backgroundColor: success
-                                          ? const Color(0xff434C6D)
-                                          : Colors.red,
-                                    ),
-                                  );
-                                }
-                              },
-                        icon: isLoading
-                            ? const SizedBox(
-                                width: 16,
-                                height: 16,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Color(0xff434C6D),
-                                ),
-                              )
-                            : SvgPicture.asset("assets/icons/cart.svg"),
-                      );
-                    },
-                  ),
-                ),
+                child: _AddToCartButton(model: model),
               ),
             ],
           ),
@@ -130,6 +75,78 @@ class Items extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// زر إضافة إلى السلة المعزول - يعمل rebuild لنفسه فقط ولا يعيد بناء الصفحة
+class _AddToCartButton extends StatefulWidget {
+  final ProductModel model;
+
+  const _AddToCartButton({required this.model});
+
+  @override
+  State<_AddToCartButton> createState() => _AddToCartButtonState();
+}
+
+class _AddToCartButtonState extends State<_AddToCartButton> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 32,
+      width: 32,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: IconButton(
+        padding: EdgeInsets.zero,
+        onPressed: isLoading
+            ? null
+            : () async {
+                setState(() => isLoading = true);
+                final homeCubit = BlocProvider.of<HomeCubit>(context);
+                CartCubit? cartCubit;
+                try {
+                  cartCubit = BlocProvider.of<CartCubit>(context);
+                } catch (_) {}
+                final messenger = ScaffoldMessenger.of(context);
+
+                final success = await homeCubit.addToCart(widget.model);
+
+                if (!mounted) return;
+                setState(() => isLoading = false);
+
+                // تحديث السلة في الخلفية بدون عمل rebuild لصفحة الـ Home
+                cartCubit?.getCart();
+
+                messenger.hideCurrentSnackBar();
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      success
+                          ? "${widget.model.nameEn} added to cart!"
+                          : "Failed to add to cart. Please check your login.",
+                    ),
+                    duration: const Duration(seconds: 2),
+                    backgroundColor:
+                        success ? const Color(0xff434C6D) : Colors.red,
+                  ),
+                );
+              },
+        icon: isLoading
+            ? const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Color(0xff434C6D),
+                ),
+              )
+            : SvgPicture.asset("assets/icons/cart.svg"),
       ),
     );
   }

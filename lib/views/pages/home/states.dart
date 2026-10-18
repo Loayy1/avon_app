@@ -13,15 +13,3 @@ class HomeSuccessState extends HomeStates {
 }
 
 class HomeFailedState extends HomeStates {}
-
-class HomeAddToCartLoadingState extends HomeStates {
-  final int productId;
-  HomeAddToCartLoadingState({required this.productId});
-}
-
-class HomeAddToCartSuccessState extends HomeStates {
-  final String productName;
-  HomeAddToCartSuccessState({required this.productName});
-}
-
-class HomeAddToCartFailedState extends HomeStates {}

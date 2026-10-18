@@ -16,4 +16,6 @@ class CartItemActionLoadingState extends CartStates {
   CartItemActionLoadingState({required this.productId});
 }
 
+class CartAddedSuccessState extends CartStates {}
+
 class CartUpdateQuantityState extends CartStates {}

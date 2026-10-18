@@ -10,8 +10,7 @@ class CartCubit extends Cubit<CartStates> {
   List<CartItemModel> items = [];
 
   /// حساب إجمالي السعر ديناميكياً من العناصر الموجودة في السلة
-  double get subtotal =>
-      items.fold(0.0, (sum, item) => sum + (item.price * item.quantity));
+  double get subtotal => items.fold(0.0, (sum, item) => sum + (item.price * item.quantity));
 
   /// جلب عناصر السلة من الـ API
   Future<void> getCart() async {
@@ -54,6 +53,7 @@ class CartCubit extends Cubit<CartStates> {
 
     if (resp.isSuccess) {
       await getCart();
+      emit(CartAddedSuccessState());
       return true;
     } else {
       emit(CartFailedState(
