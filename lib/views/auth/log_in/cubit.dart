@@ -41,13 +41,13 @@ class LogInCubit extends Cubit<LogInStates>{
       },
     );
     if (resp.isSuccess) {
+      // حفظ الـ token من الـ response عشان الـ Cart والـ APIs المحتاجة auth
+      DioHelper.token = resp.data["token"];
       emit(LogInSuccessState());
       goTo(page: ViewPage());
-
-    }else{
+    } else {
       emit(LogInFailedState());
       errorMsg = "phone or password is wrong";
-
     }
   }
 

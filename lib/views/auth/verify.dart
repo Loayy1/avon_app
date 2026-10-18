@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../view.dart';
-import 'create_password.dart';
+import 'create_password/view.dart';
 import 'forget_password.dart';
 
 class VerifyView extends StatefulWidget {

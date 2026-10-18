@@ -1,4 +1,4 @@
-import 'package:cosmetics_app/views/auth/create_password.dart';
+import 'package:cosmetics_app/views/auth/create_password/view.dart';
 import 'package:cosmetics_app/views/auth/forget_password.dart';
 import 'package:cosmetics_app/views/auth/log_in/view.dart';
 import 'package:cosmetics_app/views/auth/on_boarding.dart';

@@ -1,5 +1,4 @@
 import 'package:cosmetics_app/views/pages/profile/cubit.dart';
-import 'package:cosmetics_app/views/pages/profile/model.dart';
 import 'package:cosmetics_app/views/pages/profile/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,8 +52,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 child: Transform.translate(
                                   offset: Offset(0, 105),
                                   child: ClipOval(
-                                    child: Image.network(
-                                      state.list.profilePhotoUrl,
+                                    child: Image.asset(
+                                      "assets/images/person.jpg",
                                       height: 96,
                                       width: 96,
                                     ),
@@ -65,7 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                           SizedBox(height: 63),
                           Text(
-                            state.list.username,
+                            "Salma Ahmed",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

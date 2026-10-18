@@ -7,14 +7,34 @@ import 'model.dart';
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
 
+  List<ProductModel> products = [];
+
   void getData() async {
     emit(HomeLoadingState());
     final resp = await DioHelper.getData("/api/Products");
     if (resp.isSuccess) {
       final details = ProductData.fromJson({"data": resp.data});
+      products = details.list;
       emit(HomeSuccessState(list: details.list));
     } else {
       emit(HomeFailedState());
     }
+  }
+
+  /// إضافة منتج للـ cart عن طريق الـ API
+  Future<void> addToCart(ProductModel product) async {
+    emit(HomeAddToCartLoadingState(productId: product.id));
+    final resp = await DioHelper.sendData(
+      "/api/Cart/add",
+      params: {"productId": product.id, "quantity": 1},
+      requiresAuth: true,
+    );
+    if (resp.isSuccess) {
+      emit(HomeAddToCartSuccessState(productName: product.nameEn));
+    } else {
+      emit(HomeAddToCartFailedState());
+    }
+    // نرجع للـ state الأصلي بعد الـ feedback
+    emit(HomeSuccessState(list: products));
   }
 }

@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'cubit.dart';
 import 'model.dart';
+import 'states.dart';
 
 class Items extends StatelessWidget {
   final ProductModel model;
@@ -11,6 +13,7 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<HomeCubit>(context);
     return Container(
       height: 240,
       width: 176,
@@ -49,9 +52,40 @@ class Items extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset("assets/icons/cart.svg"),
+                  // ---- زرار إضافة للـ cart ----
+                  child: BlocBuilder<HomeCubit, HomeStates>(
+                    builder: (context, state) {
+                      // لو الـ item دا بالذات بيتحمل
+                      final isLoading = state is HomeAddToCartLoadingState &&
+                          state.productId == model.id;
+                      return IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: isLoading
+                            ? null
+                            : () {
+                                cubit.addToCart(model);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "${model.nameEn} added to cart!",
+                                    ),
+                                    duration: Duration(seconds: 2),
+                                    backgroundColor: Color(0xff434C6D),
+                                  ),
+                                );
+                              },
+                        icon: isLoading
+                            ? SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Color(0xff434C6D),
+                                ),
+                              )
+                            : SvgPicture.asset("assets/icons/cart.svg"),
+                      );
+                    },
                   ),
                 ),
               ),
