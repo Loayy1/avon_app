@@ -51,7 +51,13 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     if (resp.isSuccess) {
-      return AuthResponseModel.fromJson(resp.data is Map ? resp.data : {});
+      final model = AuthResponseModel.fromJson(
+        resp.data is Map ? Map<String, dynamic>.from(resp.data) : {},
+      );
+      if (model.token != null) {
+        await DioHelper.saveToken(model.token);
+      }
+      return model;
     } else {
       return AuthResponseModel(
         isSuccess: false,

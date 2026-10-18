@@ -8,6 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../forget_password.dart';
 
 class LogInView extends StatefulWidget {
+  const LogInView({super.key});
+
   @override
   State<LogInView> createState() => _LogInViewState();
 }

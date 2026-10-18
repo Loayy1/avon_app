@@ -1,4 +1,4 @@
-import 'package:cosmetics_app/views/auth/log_in/view.dart';
+import 'package:cosmetics_app/views/auth/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,7 +13,7 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: navKey,
-      home: LogInView(),
+      home: SplashView(),
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xffD9D9D9),
         appBarTheme: AppBarThemeData(
