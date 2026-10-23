@@ -1,4 +1,4 @@
-import 'package:cosmetics_app/views/auth/splash.dart';
+import 'features/auth/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

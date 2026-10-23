@@ -1,0 +1,15 @@
+class CreatePasswordStates {}
+
+class CreatePasswordInitialState extends CreatePasswordStates {}
+
+class CreatePasswordLoadingState extends CreatePasswordStates {}
+
+class CreatePasswordSuccessState extends CreatePasswordStates {}
+
+class CreatePasswordFailedState extends CreatePasswordStates {}
+
+class CreatePasswordFormUpdateState extends CreatePasswordStates {}
+
+class CreatePasswordToggleState extends CreatePasswordStates {}
+
+class CreatePasswordToggleConfirmState extends CreatePasswordStates {}
