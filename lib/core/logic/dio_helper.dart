@@ -3,10 +3,13 @@ import '../network/api_endpoints.dart';
 import '../storage/cache_helper.dart';
 
 class DioHelper {
-  static String? get token => CacheHelper.getToken();
+  static String? _token;
+
+  static String? get token => _token ?? CacheHelper.getToken();
 
   static set token(String? val) {
-    if (val != null) {
+    _token = val;
+    if (val != null && val.isNotEmpty) {
       CacheHelper.saveToken(val);
     } else {
       CacheHelper.removeToken();
@@ -22,17 +25,23 @@ class DioHelper {
   );
 
   static Future<void> saveToken(String? newToken) async {
-    token = newToken;
+    _token = newToken;
+    if (newToken != null && newToken.isNotEmpty) {
+      await CacheHelper.saveToken(newToken);
+    } else {
+      await CacheHelper.removeToken();
+    }
   }
 
   static Future<void> loadToken() async {
     await CacheHelper.init();
+    _token = CacheHelper.getToken();
   }
 
   static Options _authOptions() {
     final t = token;
     return Options(
-      headers: t != null ? {"Authorization": "Bearer $t"} : null,
+      headers: t != null && t.isNotEmpty ? {"Authorization": "Bearer $t"} : null,
     );
   }
 
@@ -127,6 +136,10 @@ class DioHelper {
   }
 
   static CustomResp _handleDioError(DioException ex) {
+    if (ex.response?.statusCode == 401) {
+      saveToken(null);
+    }
+
     String? customMsg;
     if (ex.type == DioExceptionType.connectionTimeout ||
         ex.type == DioExceptionType.sendTimeout ||

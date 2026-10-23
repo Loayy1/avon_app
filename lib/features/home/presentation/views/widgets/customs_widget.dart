@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../cart/presentation/cubit/cart_cubit.dart';
-import '../../cubit/home_cubit.dart';
-import '../../../data/models/product_model.dart';
+import 'package:cosmetics_app/core/logic/dio_helper.dart';
+import 'package:cosmetics_app/core/logic/helper_methods.dart';
+import 'package:cosmetics_app/features/auth/presentation/views/login_view.dart';
+import 'package:cosmetics_app/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:cosmetics_app/features/home/presentation/cubit/home_cubit.dart';
+import 'package:cosmetics_app/features/home/data/models/product_model.dart';
 
 class Items extends StatelessWidget {
   final ProductModel model;
@@ -107,13 +110,33 @@ class _AddToCartButtonState extends State<_AddToCartButton> {
         onPressed: isLoading
             ? null
             : () async {
+                final messenger = ScaffoldMessenger.of(context);
+
+                if (DioHelper.token == null || DioHelper.token!.isEmpty) {
+                  messenger.hideCurrentSnackBar();
+                  messenger.showSnackBar(
+                    SnackBar(
+                      content: const Text("Please login first to add items to cart"),
+                      backgroundColor: Colors.red,
+                      duration: const Duration(seconds: 3),
+                      action: SnackBarAction(
+                        label: "Login",
+                        textColor: Colors.white,
+                        onPressed: () {
+                          goTo(page: const LogInView(), keepHistory: true);
+                        },
+                      ),
+                    ),
+                  );
+                  return;
+                }
+
                 setState(() => isLoading = true);
                 final homeCubit = BlocProvider.of<HomeCubit>(context);
                 CartCubit? cartCubit;
                 try {
                   cartCubit = BlocProvider.of<CartCubit>(context);
                 } catch (_) {}
-                final messenger = ScaffoldMessenger.of(context);
 
                 final success = await homeCubit.addToCart(widget.model);
 
@@ -131,9 +154,18 @@ class _AddToCartButtonState extends State<_AddToCartButton> {
                           ? "${widget.model.nameEn} added to cart!"
                           : "Failed to add to cart. Please check your login.",
                     ),
-                    duration: const Duration(seconds: 2),
+                    duration: const Duration(seconds: 3),
                     backgroundColor:
                         success ? const Color(0xff434C6D) : Colors.red,
+                    action: !success
+                        ? SnackBarAction(
+                            label: "Login",
+                            textColor: Colors.white,
+                            onPressed: () {
+                              goTo(page: const LogInView(), keepHistory: true);
+                            },
+                          )
+                        : null,
                   ),
                 );
               },

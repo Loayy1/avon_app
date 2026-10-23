@@ -14,12 +14,33 @@ class AuthResponseModel {
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) {
     bool success = true;
     if (json.containsKey("isSuccess")) {
-      success = json["isSuccess"] == true;
+      success = json["isSuccess"] == true || json["isSuccess"] == 1;
     } else if (json.containsKey("status")) {
-      success = json["status"] == true;
+      final s = json["status"];
+      success = s == true || s == 1 || s == 200 || s == "success";
     }
 
-    String? msg = json["message"]?.toString();
+    String? token;
+    if (json["token"] != null) {
+      token = json["token"].toString();
+    } else if (json["accessToken"] != null) {
+      token = json["accessToken"].toString();
+    } else if (json["data"] is Map) {
+      final d = json["data"] as Map;
+      token = d["token"]?.toString() ?? d["accessToken"]?.toString();
+    } else if (json["data"] is String && (json["data"] as String).isNotEmpty) {
+      token = json["data"].toString();
+    }
+
+    String? refreshToken;
+    if (json["refreshToken"] != null) {
+      refreshToken = json["refreshToken"].toString();
+    } else if (json["data"] is Map) {
+      final d = json["data"] as Map;
+      refreshToken = d["refreshToken"]?.toString();
+    }
+
+    String? msg = json["message"]?.toString() ?? json["error"]?.toString();
     if (msg == null && json["errors"] != null) {
       if (json["errors"] is Map) {
         final errMap = json["errors"] as Map;
@@ -36,8 +57,8 @@ class AuthResponseModel {
 
     return AuthResponseModel(
       isSuccess: success,
-      token: json["token"] ?? json["data"]?["token"],
-      refreshToken: json["refreshToken"] ?? json["data"]?["refreshToken"],
+      token: token,
+      refreshToken: refreshToken,
       message: msg,
     );
   }

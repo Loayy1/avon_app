@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/logic/dio_helper.dart';
 import '../../../../core/logic/helper_methods.dart';
+import '../../../main/presentation/views/main_view.dart';
 import 'on_boarding_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -14,7 +16,12 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    goTo(page: const OnBoardingView(), second: 2);
+    final bool isLoggedIn =
+        DioHelper.token != null && DioHelper.token!.isNotEmpty;
+    goTo(
+      page: isLoggedIn ? const ViewPage() : const OnBoardingView(),
+      second: 2,
+    );
   }
 
   @override

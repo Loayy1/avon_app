@@ -1,3 +1,5 @@
+import '../../../../core/logic/dio_helper.dart';
+import 'login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -280,7 +282,7 @@ class VerifyView extends StatelessWidget {
               ),
               const SizedBox(height: 23),
               FilledButton(
-                onPressed: () => goTo(page: const ViewPage()),
+                onPressed: () { if (DioHelper.token != null && DioHelper.token!.isNotEmpty) { goTo(page: const ViewPage()); } else { goTo(page: const LogInView()); } },
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xffD75D72),
                   padding: const EdgeInsets.symmetric(

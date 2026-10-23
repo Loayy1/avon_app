@@ -7,6 +7,8 @@ import '../../../cart/presentation/views/cart_view.dart';
 import '../../../categories/presentation/views/categories_view.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
+import '../../cubit/navigation_cubit.dart';
+import '../../cubit/navigation_states.dart';
 
 class ViewPage extends StatefulWidget {
   const ViewPage({super.key});
@@ -16,7 +18,6 @@ class ViewPage extends StatefulWidget {
 }
 
 class _ViewPageState extends State<ViewPage> {
-  int currentPage = 0;
   final controller = PageController(initialPage: 0);
   final pages = [HomeView(), CategoriesView(), CartView(), ProfileView()];
   final icons = [
@@ -27,19 +28,27 @@ class _ViewPageState extends State<ViewPage> {
   ];
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartCubit()..getCart(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CartCubit()..getCart()),
+        BlocProvider(create: (context) => NavigationCubit()),
+      ],
       child: Builder(
         builder: (ctx) {
           final cartCubit = BlocProvider.of<CartCubit>(ctx);
+          final navCubit = BlocProvider.of<NavigationCubit>(ctx);
           return Scaffold(
             body: PageView(
               controller: controller,
               onPageChanged: (value) {
-                setState(() {
-                  currentPage = value;
-                });
+                navCubit.changePage(value);
                 if (value == 2) {
                   cartCubit.getCart();
                 }
@@ -62,30 +71,33 @@ class _ViewPageState extends State<ViewPage> {
                     ),
                   ],
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(
-                    pages.length,
-                    (index) => IconButton(
-                      onPressed: () {
-                        setState(() {
-                          controller.jumpToPage(index);
-                        });
-                        if (index == 2) {
-                          cartCubit.getCart();
-                        }
-                      },
-                      icon: SvgPicture.asset(
-                        icons[index],
-                        colorFilter: ColorFilter.mode(
-                          currentPage == index
-                              ? const Color(0xffD75D72)
-                              : const Color(0xff8E8EA9),
-                          BlendMode.srcIn,
+                child: BlocBuilder<NavigationCubit, NavigationStates>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: List.generate(
+                        pages.length,
+                        (index) => IconButton(
+                          onPressed: () {
+                            navCubit.changePage(index);
+                            controller.jumpToPage(index);
+                            if (index == 2) {
+                              cartCubit.getCart();
+                            }
+                          },
+                          icon: SvgPicture.asset(
+                            icons[index],
+                            colorFilter: ColorFilter.mode(
+                              navCubit.currentIndex == index
+                                  ? const Color(0xffD75D72)
+                                  : const Color(0xff8E8EA9),
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
             ),
