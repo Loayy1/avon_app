@@ -1,3 +1,4 @@
+import 'package:cosmetics_app/features/auth/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -123,7 +124,7 @@ class _AddToCartButtonState extends State<_AddToCartButton> {
                         label: "Login",
                         textColor: Colors.white,
                         onPressed: () {
-                          goTo(page: const LogInView(), keepHistory: true);
+                          goTo(page: const OnBoardingView(), keepHistory: true);
                         },
                       ),
                     ),
