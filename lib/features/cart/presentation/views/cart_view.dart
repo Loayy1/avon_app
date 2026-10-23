@@ -161,7 +161,6 @@ class _CartContent extends StatelessWidget {
                 padding: const EdgeInsets.all(13),
                 child: Column(
                   children: [
-                    // عدد المنتجات في السلة
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Text(
@@ -174,7 +173,6 @@ class _CartContent extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 24),
-                    // قائمة المنتجات
                     ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -196,7 +194,6 @@ class _CartContent extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 25),
-                    // ---- فاتورة الدفع المتجاوبة والديناميكية ----
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(28),
@@ -226,7 +223,6 @@ class _CartContent extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 28),
-                          // Subtotal ديناميكي
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -274,7 +270,6 @@ class _CartContent extends StatelessWidget {
                             color: Color(0x1C29D3DA),
                           ),
                           SizedBox(height: 32),
-                          // Total ديناميكي
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -347,7 +342,6 @@ class _CartContent extends StatelessWidget {
   }
 }
 
-// ---- Cart Item Widget ----
 class _CartItem extends StatelessWidget {
   final CartItemModel model;
   final bool isDeleting;

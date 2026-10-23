@@ -16,10 +16,8 @@ class CartCubit extends Cubit<CartStates> {
 
   List<CartItemModel> items = [];
 
-  /// حساب إجمالي السعر ديناميكياً من العناصر الموجودة في السلة
   double get subtotal => items.fold(0.0, (sum, item) => sum + (item.price * item.quantity));
 
-  /// جلب عناصر السلة من الـ API عبر الـ Repository
   Future<void> getCart() async {
     emit(CartLoadingState());
     try {
@@ -31,7 +29,6 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  /// إضافة منتج إلى السلة
   Future<bool> addToCart(int productId, {int quantity = 1}) async {
     emit(CartItemActionLoadingState(productId: productId));
     final success = await repository.addToCart(productId, quantity: quantity);
@@ -46,7 +43,6 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  /// حذف عنصر من السلة عبر الـ productId
   Future<bool> removeItem(int productId) async {
     emit(CartItemActionLoadingState(productId: productId));
     final success = await repository.removeFromCart(productId);
@@ -62,7 +58,6 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  /// تعديل كمية المنتج مع تحديث فوري (Optimistic update)
   Future<void> updateQuantity(int productId, int quantity) async {
     if (quantity <= 0) {
       await removeItem(productId);
@@ -78,7 +73,6 @@ class CartCubit extends Cubit<CartStates> {
       final success = await repository.updateQuantity(productId, quantity);
 
       if (!success) {
-        // في حال فشل الـ API نرجع للكمية القديمة
         items[index].quantity = oldQuantity;
         emit(CartUpdateQuantityState());
         emit(CartFailedState(message: "Failed to update item quantity"));

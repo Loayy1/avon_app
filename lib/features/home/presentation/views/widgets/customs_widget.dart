@@ -84,7 +84,6 @@ class Items extends StatelessWidget {
   }
 }
 
-/// زر إضافة إلى السلة المعزول - يعمل rebuild لنفسه فقط ولا يعيد بناء الصفحة
 class _AddToCartButton extends StatefulWidget {
   final ProductModel model;
 
@@ -144,7 +143,6 @@ class _AddToCartButtonState extends State<_AddToCartButton> {
                 if (!mounted) return;
                 setState(() => isLoading = false);
 
-                // تحديث السلة في الخلفية بدون عمل rebuild لصفحة الـ Home
                 cartCubit?.getCart();
 
                 messenger.hideCurrentSnackBar();

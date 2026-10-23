@@ -29,7 +29,6 @@ class HomeCubit extends Cubit<HomeStates> {
     }
   }
 
-  /// إضافة منتج للـ cart بدون عمل rebuild للصفحة بالكامل
   Future<bool> addToCart(ProductModel product) async {
     final resp = await DioHelper.sendData(
       ApiEndpoints.cartAdd,
