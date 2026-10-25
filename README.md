@@ -15,7 +15,7 @@ A cross-platform cosmetics shopping application built with **Flutter** and **Dar
 
 - **Flutter / Dart**
 - **Dio** for REST API communication
-- **Cubit** and **Provider** for state management
+- **Cubit** for state management
 - JSON parsing and reusable UI components
 
 ## Author
