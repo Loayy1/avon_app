@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/logic/helper_methods.dart';
 import '../../../main/presentation/views/main_view.dart';
 import '../cubit/verify_cubit.dart';
-import '../cubit/verify_states.dart';
+import '../states/verify_states.dart';
 import 'create_password_view.dart';
 import 'forget_password_view.dart';
 

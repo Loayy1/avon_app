@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/logic/helper_methods.dart';
 import '../cubit/register_cubit.dart';
-import '../cubit/register_states.dart';
+import '../states/register_states.dart';
 import 'login_view.dart';
 import 'verify_view.dart';
 

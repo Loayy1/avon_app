@@ -13,7 +13,7 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: navKey,
-      home: const SplashView(),
+      home:  SplashView(),
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xffD9D9D9),
         appBarTheme: const AppBarTheme(

@@ -6,7 +6,7 @@ import '../../../main/presentation/views/main_view.dart';
 import '../../data/datasources/auth_remote_data_source.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
-import 'login_states.dart';
+import '../states/login_states.dart';
 
 class LogInCubit extends Cubit<LogInStates> {
   final AuthRepository repository;

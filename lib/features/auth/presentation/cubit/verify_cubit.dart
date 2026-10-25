@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/datasources/auth_remote_data_source.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
-import 'verify_states.dart';
+import '../states/verify_states.dart';
 
 class VerifyCubit extends Cubit<VerifyStates> {
   final AuthRepository repository;

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/logic/helper_methods.dart';
 import '../cubit/forgot_password_cubit.dart';
-import '../cubit/forgot_password_states.dart';
+import '../states/forgot_password_states.dart';
 import 'login_view.dart';
 import 'verify_view.dart';
 

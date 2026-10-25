@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/logic/helper_methods.dart';
 import '../cubit/login_cubit.dart';
-import '../cubit/login_states.dart';
+import '../states/login_states.dart';
 import 'forget_password_view.dart';
 import 'sign_in_view.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/logic/helper_methods.dart';
 import '../cubit/create_password_cubit.dart';
-import '../cubit/create_password_states.dart';
+import '../states/create_password_states.dart';
 import 'login_view.dart';
 
 class CreatePasswordView extends StatefulWidget {
