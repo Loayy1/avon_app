@@ -30,7 +30,7 @@
     </a>
   </p>
 
-  <sub>📦 Pre-built & ready to install • 52.8 MB • Android 5.0+</sub>
+  <sub>📦 Pre-built & ready to install • 53.1 MB • Android 5.0+</sub>
 
   <br /><br />
 
@@ -54,7 +54,7 @@ You can download and run the compiled production release directly on your Androi
 | **Version** | `1.0.0` (Build `1`) |
 | **Package** | `com.example.cosmetics_app` |
 | **Format** | Android Application Package (`.apk`) |
-| **File Size** | `~52.8 MB` |
+| **File Size** | `~53.1 MB` |
 | **Compatibility** | Android 5.0 (API 21) &rarr; Android 14 (API 34) |
 | **Optimization** | Release mode (R8 minified & tree-shaken) |
 
@@ -95,6 +95,7 @@ You can download and run the compiled production release directly on your Androi
 
 ### 💳 Checkout & Profile
 * Detailed payment summary with order review.
+* Local notifications for order status and checkout confirmation.
 * Multi-channel payment options (Meeza cards, digital wallets, cash on delivery).
 * User profile overview, saved information, and safe sign-out.
 
