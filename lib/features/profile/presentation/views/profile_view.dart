@@ -30,7 +30,8 @@ class _ProfileViewState extends State<ProfileView> {
                   BlocBuilder<ProfileCubit, ProfileStates>(
                     bloc: cubit,
                     builder: (context, state) {
-                      final username = state is ProfileSuccessStates &&
+                      final username =
+                          state is ProfileSuccessStates &&
                               state.profile?.username != null &&
                               state.profile!.username.isNotEmpty
                           ? state.profile!.username
@@ -46,7 +47,9 @@ class _ProfileViewState extends State<ProfileView> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      const Color(0xff434C6D).withValues(alpha: .6),
+                                      const Color(
+                                        0xff434C6D,
+                                      ).withValues(alpha: .6),
                                       const Color(0xffECA4C5),
                                     ],
                                     begin: AlignmentDirectional.topCenter,
@@ -55,16 +58,25 @@ class _ProfileViewState extends State<ProfileView> {
                                 ),
                               ),
                               Center(
-                                child: Transform.translate(
-                                  offset: const Offset(0, 105),
-                                  child: ClipOval(
-                                    child: Image.asset(
-                                      "assets/images/person.jpg",
-                                      height: 96,
-                                      width: 96,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                                child: BlocBuilder<ProfileCubit, ProfileStates>(
+                                  bloc: cubit,
+                                  builder:
+                                      (
+                                        BuildContext context,
+                                        ProfileStates state,
+                                      ) {
+                                        return Transform.translate(
+                                          offset: const Offset(0, 105),
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              "https://tse2.mm.bing.net/th/id/OIP.9sr-EQZQ406dclAjQVwSmgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                                              height: 96,
+                                              width: 96,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                 ),
                               ),
                             ],
@@ -94,14 +106,13 @@ class _ProfileViewState extends State<ProfileView> {
                       );
                     },
                   ),
-                  const SizedBox(height: 20),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) =>
                         Item(model: cubit.list[index]),
                     separatorBuilder: (context, index) =>
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 5),
                     itemCount: cubit.list.length,
                   ),
                   Padding(

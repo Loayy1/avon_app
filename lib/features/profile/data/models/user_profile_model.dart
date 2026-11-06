@@ -14,10 +14,18 @@ class UserProfileModel {
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
     final data = (json['data'] ?? json) as Map<String, dynamic>;
     return UserProfileModel(
-      username: (data['username'] ?? data['userName'] ?? "User").toString(),
+      username: (data['username'] ?? data['userName'] ?? data['name'] ?? "User").toString(),
       email: (data['email'] ?? "").toString(),
       phoneNumber: (data['phoneNumber'] ?? data['phone'] ?? "").toString(),
-      profilePhotoUrl: data['profilePhotoUrl']?.toString(),
+      profilePhotoUrl: (data['profilePhotoUrl'] ??
+              data['profile_photo_url'] ??
+              data['image'] ??
+              data['photo'] ??
+              data['avatar'] ??
+              data['picture'] ??
+              data['imageUrl'] ??
+              data['profileImage'])
+          ?.toString(),
     );
   }
 }
