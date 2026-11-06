@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 
 import 'core/logic/dio_helper.dart';
 import 'core/logic/helper_methods.dart';
+import 'core/logic/notification_helper.dart';
 import 'features/auth/presentation/views/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotificationHelper.init();
   await DioHelper.loadToken();
 
   runApp(

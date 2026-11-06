@@ -1,4 +1,5 @@
 import 'package:cosmetics_app/core/logic/helper_methods.dart';
+import 'package:cosmetics_app/core/logic/notification_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -305,7 +306,42 @@ class CheckoutView extends StatelessWidget {
                     ),
                     SizedBox(height: 35),
                     TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await NotificationHelper.showOrderConfirmedNotification(
+                          title: "Avon Cosmetics",
+                          body: "Your order has been confirmed successfully! Thank you for shopping with us.",
+                        );
+
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(4),
+                                    child: Image.asset(
+                                      "assets/images/logo.png",
+                                      height: 24,
+                                      width: 24,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  const Expanded(
+                                    child: Text(
+                                      "Order Confirmed Successfully!",
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              backgroundColor: const Color(0xff434C6D),
+                              behavior: SnackBarBehavior.floating,
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+                          goTo(page: const ViewPage());
+                        }
+                      },
                       icon: SvgPicture.asset("assets/icons/order.svg"),
                       label: Text(
                         "ORDER",
