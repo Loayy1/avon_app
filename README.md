@@ -213,7 +213,17 @@ lib/
   <a href="https://github.com/Loayy1">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
   </a>
+  &nbsp;
+  <a href="https://wa.me/loay.mohamedd">
+    <img src="https://img.shields.io/badge/WhatsApp-@loay.mohamedd-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"/>
+  </a>
 </p>
+
+| Channel | Contact Handle / Profile |
+| :--- | :--- |
+| 💬 **WhatsApp** | [@loay.mohamedd](https://wa.me/loay.mohamedd) |
+| 💼 **LinkedIn** | [Loay Mohamed](https://www.linkedin.com/in/loay-mohamed-621b7a33a) |
+| 🐙 **GitHub** | [@Loayy1](https://github.com/Loayy1) |
 
 <sub>Passionate about crafting polished, resilient mobile experiences with Clean Code & Pragmatic Architecture.</sub>
 
