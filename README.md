@@ -1,200 +1,158 @@
 <div align="center">
 
-  <img src="assets/images/app_icon.png" alt="Avon Cosmetics Logo" width="110" style="border-radius: 22px; box-shadow: 0 8px 24px rgba(215, 93, 114, 0.25);" />
+  <br />
 
-  # ✨ Avon Cosmetics App
-  ### Modern E-Commerce Mobile Application
+  <img src="assets/images/app_icon.png" alt="Avon Cosmetics" width="105" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(215, 93, 114, 0.2);" />
+
+  # Avon Cosmetics
+  **A Refined Cosmetics & Beauty Shopping Experience**
 
   <p align="center">
-    <strong>A high-performance, enterprise-grade cosmetics shopping application built with Flutter & Dart, following Clean Architecture principles and powered by BLoC/Cubit state management.</strong>
+    <em>A modern, cross-platform e-commerce application crafted with Flutter & Dart, engineered under Clean Architecture principles and powered by BLoC / Cubit.</em>
   </p>
 
   <!-- Badges -->
   <p align="center">
-    <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"></a>
-    <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"></a>
-    <a href="https://bloclibrary.dev"><img src="https://img.shields.io/badge/State_Management-BLoC%20%2F%20Cubit-8A2BE2?style=for-the-badge&logo=bloc&logoColor=white" alt="BLoC"></a>
-    <a href="https://pub.dev/packages/dio"><img src="https://img.shields.io/badge/Networking-Dio%20REST%20Client-2C3E50?style=for-the-badge&logo=fastapi&logoColor=white" alt="Dio"></a>
-    <a href="https://github.com/Loayy1/Avon_app/releases"><img src="https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"></a>
-    <a href="#"><img src="https://img.shields.io/badge/Architecture-Clean%20Architecture-D75D72?style=for-the-badge" alt="Clean Arch"></a>
+    <img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter" />
+    <img src="https://img.shields.io/badge/Dart-3.x-0175C2?style=flat-square&logo=dart&logoColor=white" alt="Dart" />
+    <img src="https://img.shields.io/badge/Architecture-Clean%20Architecture-D75D72?style=flat-square" alt="Clean Architecture" />
+    <img src="https://img.shields.io/badge/State-Cubit%20%2F%20BLoC-6C5CE7?style=flat-square" alt="BLoC" />
+    <img src="https://img.shields.io/badge/Network-Dio-2D3748?style=flat-square" alt="Dio" />
+    <img src="https://img.shields.io/badge/Platform-Android-10B981?style=flat-square&logo=android&logoColor=white" alt="Android" />
   </p>
 
-  <!-- CTA Buttons -->
+  <br />
+
+  <!-- APK Download CTA -->
   <p align="center">
-    <a href="https://github.com/Loayy1/Avon_app/releases/download/v1.0.0/app-release.apk">
-      <img src="https://img.shields.io/badge/📲_Download_APK-v1.0.0_(52MB)-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" height="40"/>
-    </a>
-    &nbsp;&nbsp;
-    <a href="https://www.linkedin.com/in/loay-mohamed-621b7a33a">
-      <img src="https://img.shields.io/badge/Connect_on-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="40"/>
+    <a href="https://github.com/Loayy1/Avon_app/raw/main/apk/app-release.apk">
+      <img src="https://img.shields.io/badge/⬇%20Download%20APK-Direct%20Download%20(v1.0.0)-10B981?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" height="42" />
     </a>
   </p>
 
+  <sub>📦 Pre-built & ready to install • 52.8 MB • Android 5.0+</sub>
+
+  <br /><br />
+
 </div>
 
 ---
 
-## 📑 Table of Contents
+## 📱 APK Download & Installation
 
-- [📱 APK Release & Quick Download](#-apk-release--quick-download)
-- [📸 Application Showcase](#-application-showcase)
-- [🌟 Overview & Design Philosophy](#-overview--design-philosophy)
-- [✨ Core Features](#-core-features)
-- [🏗️ Engineering & Clean Architecture](#️-engineering--clean-architecture)
-- [🛠️ Tech Stack & Dependencies](#️-tech-stack--dependencies)
-- [👨‍💻 Author & Connect](#-author--connect)
+You can download and run the compiled production release directly on your Android phone without needing to set up Flutter:
 
----
+* 📥 **[Direct APK Download (app-release.apk)](https://github.com/Loayy1/Avon_app/raw/main/apk/app-release.apk)**
+* 📁 **Repository Path:** [`apk/app-release.apk`](apk/app-release.apk)
+* 🏷️ **GitHub Releases:** [View Releases](https://github.com/Loayy1/Avon_app/releases)
 
-## 📱 APK Release & Quick Download
+### 📋 Build Information
 
-A production-ready release build is pre-compiled, optimized with R8 code shrinking, and ready for installation on any physical Android device.
-
-<div align="center">
-
-| Specification | Technical Detail |
+| Property | Value |
 | :--- | :--- |
-| **Package Name** | `com.example.cosmetics_app` |
-| **Version** | `v1.0.0` (Build `1`) |
-| **Artifact Type** | Android Standalone Package (`.apk`) |
-| **Build Optimization** | Release Mode (Tree-shaken, Minified, Optimized R8) |
-| **Binary Size** | `~52.8 MB` |
-| **Compatibility** | Android 5.0 (API Level 21) &rarr; Android 14 (API Level 34) |
+| **Application** | Avon Cosmetics |
+| **Version** | `1.0.0` (Build `1`) |
+| **Package** | `com.example.cosmetics_app` |
+| **Format** | Android Application Package (`.apk`) |
+| **File Size** | `~52.8 MB` |
+| **Compatibility** | Android 5.0 (API 21) &rarr; Android 14 (API 34) |
+| **Optimization** | Release mode (R8 minified & tree-shaken) |
 
-</div>
-
-<p align="center">
-  <a href="https://github.com/Loayy1/Avon_app/releases/download/v1.0.0/app-release.apk">
-    <img src="https://img.shields.io/badge/Direct_Download-app--release.apk-238636?style=for-the-badge&logo=googleplay&logoColor=white" alt="Direct APK Download"/>
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/Loayy1/Avon_app/releases">
-    <img src="https://img.shields.io/badge/GitHub-All_Releases-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Releases"/>
-  </a>
-</p>
-
-> [!TIP]
-> **Android Direct Install:** If installing outside the Play Store, ensure that **"Install Unknown Apps"** is enabled in your Android Security settings for your browser or file manager.
+> **Installation Note:** If your browser or file manager prompts you during installation, please enable **"Install unknown apps"** in your phone settings.
 
 ---
 
-## 📸 Application Showcase
+## 📸 Interface Preview
 
 <div align="center">
 
-| 💎 **Splash & Brand Identity** | 🔐 **Authentication & Security** | 🛍️ **Home & Dynamic Catalog** | 🛒 **Smart Cart & Invoice** |
+| Splash & Identity | Secure Login | Discovery & Catalog | Smart Cart & Summary |
 | :---: | :---: | :---: | :---: |
-| <img src="assets/screenshots/splash.jpg" width="225" style="border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.12);" alt="Splash Screen"/> | <img src="assets/screenshots/login.jpg" width="225" style="border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.12);" alt="Login Screen"/> | <img src="assets/screenshots/home.jpg" width="225" style="border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.12);" alt="Home Screen"/> | <img src="assets/screenshots/cart.jpg" width="225" style="border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.12);" alt="Cart Screen"/> |
-| *Smooth branding entrypoint* | *Phone number & password validation* | *Promotions, discounts & product cards* | *Real-time totals, quantities & checkout* |
+| <img src="assets/screenshots/splash.jpg" width="220" style="border-radius: 18px; border: 1px solid #ECEFF1; box-shadow: 0 8px 24px rgba(0,0,0,0.07);" alt="Splash Screen"/> | <img src="assets/screenshots/login.jpg" width="220" style="border-radius: 18px; border: 1px solid #ECEFF1; box-shadow: 0 8px 24px rgba(0,0,0,0.07);" alt="Login Screen"/> | <img src="assets/screenshots/home.jpg" width="220" style="border-radius: 18px; border: 1px solid #ECEFF1; box-shadow: 0 8px 24px rgba(0,0,0,0.07);" alt="Home Screen"/> | <img src="assets/screenshots/cart.jpg" width="220" style="border-radius: 18px; border: 1px solid #ECEFF1; box-shadow: 0 8px 24px rgba(0,0,0,0.07);" alt="Cart Screen"/> |
+| *Brand introduction* | *Phone & password auth* | *Banners & product cards* | *Real-time invoice calculation* |
 
 </div>
 
 ---
 
-## 🌟 Overview & Design Philosophy
+## ✨ Features
 
-**Avon Cosmetics App** is crafted to provide a seamless, modern shopping experience for cosmetics and beauty products. Engineered with scalability, clean code practices, and strict architectural boundaries in mind:
+### 🔐 Authentication & Session
+* Phone number and password authentication with client-side validation.
+* 4-digit OTP verification flow with resend countdown timer.
+* Password lifecycle management (Forgot Password & Password Reset).
+* JWT Bearer token auto-injection and persistent session caching.
 
-- 🎯 **Domain-Driven Clarity**: Zero business logic inside presentation widgets.
-- ⚡ **Zero-Latency Feel**: Employs optimistic UI updates on cart interactions, giving immediate visual feedback before API responses resolve.
-- 🛡️ **Defensive Error Handling**: Comprehensive failure management with custom Dio interceptors, auto token loading, and graceful error states.
-- 🎨 **Pixel-Perfect UI**: Fully responsive layouts built with custom design tokens, vector typography, and smooth transitions.
+### 🛍️ Browsing & Catalog
+* Dynamic remote marketing carousel for discounts and seasonal offers.
+* Category filtering for cosmetics, skincare, and beauty products.
+* Responsive product cards displaying imagery, EGP pricing, and stock status.
 
----
+### 🛒 High-Performance Cart
+* **Optimistic UI Updates:** Instant counter and state feedback on add, increment, decrement, and delete actions before network calls resolve.
+* **Isolated Button Rebuilds:** Targeted `buildWhen` logic ensures that adding items only triggers the local button loader without redrawing the entire screen.
+* **Real-time Invoice:** Automatic evaluation of subtotal, delivery fees, and final checkout totals.
 
-## ✨ Core Features
-
-### 🔐 1. Authentication & Session Security
-- **Dynamic Registration & Sign-in**: Validates international phone formats, passwords, and user information.
-- **OTP Verification Flow**: 4-digit verification code mechanism with resend countdown timers.
-- **Password Lifecycle**: Complete self-service Forgot Password and Reset Password flows.
-- **JWT Session Persistence**: Automatic token injection into HTTP headers and secure local caching via `SharedPreferences`.
-
-### 🛍️ 2. Dynamic Catalog & Discovery
-- **Marketing Sliders & Carousels**: Cloud-driven hero banners with promotional codes and seasonal deals.
-- **Categorized Browsing**: Instant navigation through cosmetics, skincare, and fragrance collections.
-- **Rich Product Cards**: High-res product images, real-time pricing in EGP, inventory status, and quick add-to-cart actions.
-
-### 🛒 3. High-Performance Shopping Cart
-- **Optimistic State Updates**: Items increment, decrement, and delete immediately on screen with background synchronization.
-- **Isolated Widget Rebuilds**: Uses granular Bloc listeners (`buildWhen`) so tapping "Add to Cart" animates only that specific button without re-rendering the whole page.
-- **Automated Price Computation**: Real-time evaluation of:
-  $$\text{Total} = \text{Subtotal} + \text{Shipping} + \text{Taxes} - \text{Discounts}$$
-
-### 💳 4. Checkout & Payment Summary
-- **Detailed Invoice Breakdown**: Itemized pricing, delivery calculation, and subtotal review.
-- **Payment Method Diversity**: Built-in support for Meeza debit cards, digital wallets, and Cash on Delivery.
-
-### 👤 5. User Profile & Settings
-- Personal profile viewer with user avatar and account details.
-- Order history tracking and preferences management.
-- Secure session sign-out with cache cleanup.
+### 💳 Checkout & Profile
+* Detailed payment summary with order review.
+* Multi-channel payment options (Meeza cards, digital wallets, cash on delivery).
+* User profile overview, saved information, and safe sign-out.
 
 ---
 
-## 🏗️ Engineering & Clean Architecture
+## 🏗️ Clean Architecture
 
-The project strictly adheres to **Feature-First Clean Architecture**, ensuring strict separation of concerns, testability, and modularity:
+The codebase follows a **Feature-First Clean Architecture**, separating business rules from frameworks and presentation:
 
 ```
-                      ┌────────────────────────────────────────┐
-                      │          PRESENTATION LAYER            │
-                      │   Widgets • Screens • Cubit • States   │
-                      └───────────────────┬────────────────────┘
-                                          │ depends on
-                                          ▼
-                      ┌────────────────────────────────────────┐
-                      │             DOMAIN LAYER               │
-                      │    Repository Interfaces • Entities    │
-                      └───────────────────▲────────────────────┘
-                                          │ implements
-                                          │
-                      ┌───────────────────┴────────────────────┐
-                      │              DATA LAYER                │
-                      │ Data Sources • Models • Repositories   │
-                      └────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┐
+│                   Presentation Layer                   │
+│         Screens  •  Widgets  •  Cubit  •  States       │
+└───────────────────────────┬────────────────────────────┘
+                            │ depends on
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│                      Domain Layer                      │
+│            Repository Contracts  •  Entities           │
+└───────────────────────────▲────────────────────────────┘
+                            │ implements
+                            │
+┌───────────────────────────┴────────────────────────────┐
+│                       Data Layer                       │
+│        Remote Data Sources  •  Models  •  Dio          │
+└────────────────────────────────────────────────────────┘
 ```
 
-### 📂 Directory Organization:
+### 📂 Directory Structure
 
 ```
 lib/
-├── core/                                # Enterprise Core Infrastructure
-│   ├── error/                           # Custom failures & exceptions
-│   ├── logic/                           # DioHelper, Global Navigation Key & Helpers
-│   ├── network/                         # Remote Endpoints & Interceptor Configs
-│   └── storage/                         # CacheHelper (SharedPreferences wrapper)
+├── core/                                # Shared Infrastructure
+│   ├── error/                           # Failure models & error handling
+│   ├── logic/                           # DioHelper & navigation keys
+│   ├── network/                         # Remote API endpoints
+│   └── storage/                         # CacheHelper (SharedPreferences)
 │
-└── features/                            # Self-contained Feature Modules
-    ├── auth/                            # Login, Register, OTP & Passwords
-    │   ├── data/                        # Models, DataSources & Repo Implementations
-    │   ├── domain/                      # Abstract Repository Contracts
-    │   └── presentation/                # Cubits, States & Views
-    ├── cart/                            # Shopping Cart & Invoice Engine
-    ├── categories/                      # Product Categorization
-    ├── home/                            # Marketing Sliders & Product Feed
-    ├── main/                            # Main Navigation Coordinator
-    └── profile/                         # User Profile & Account Data
+└── features/                            # Domain Features
+    ├── auth/                            # Login, Register, OTP & Recovery
+    ├── cart/                            # Cart management & invoice
+    ├── categories/                      # Product category filters
+    ├── home/                            # Marketing feed & products
+    ├── main/                            # Bottom navigation controller
+    └── profile/                         # User profile & settings
 ```
-
-### 🧠 Clean Architecture Benefits Realized:
-- **Independent of Frameworks**: Domain logic doesn't depend on Flutter UI libraries.
-- **Testable in Isolation**: Repositories and Cubits can be unit-tested without mocking the UI.
-- **Interchangeable Data Sources**: Swapping the REST API with a local database or GraphQL requires zero changes to the UI layer.
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## 🛠️ Tech Stack
 
-| Category | Tool / Package | Role & Responsibility |
-| :--- | :--- | :--- |
-| **Language** | [Dart 3.x](https://dart.dev) | Modern, soundly typed language with pattern matching & records |
-| **Framework** | [Flutter 3.x](https://flutter.dev) | High-performance compiled native UI toolkit |
-| **State Management** | [flutter_bloc / Cubit](https://pub.dev/packages/flutter_bloc) | Predictable, unidirectional state streams with state immutability |
-| **Networking** | [dio](https://pub.dev/packages/dio) | Robust HTTP client with interceptors, timeouts & token headers |
-| **Local Storage** | [shared_preferences](https://pub.dev/packages/shared_preferences) | Fast asynchronous local persistence for session tokens |
-| **Vector Graphics** | [flutter_svg](https://pub.dev/packages/flutter_svg) | Scalable, lossless SVG vector icon rendering |
-| **Asset Tooling** | [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons) | Automated multi-density app icon generation for Android & iOS |
+| Technology | Purpose |
+| :--- | :--- |
+| **Flutter & Dart** | Cross-platform native application framework |
+| **flutter_bloc / Cubit** | Predictable, unidirectional state management |
+| **Dio** | HTTP client with centralized interceptors & token handling |
+| **shared_preferences** | Local device persistence for auth credentials |
+| **flutter_svg** | Resolution-independent vector graphics rendering |
 
 ---
 
@@ -203,34 +161,28 @@ lib/
 <div align="center">
 
 ### **Loay Mohamed Nader**
-**Flutter Mobile Application Engineer**
+*Flutter Mobile Application Developer*
+
+<br />
 
 <p align="center">
+  <a href="https://wa.me/loay.mohamedd">
+    <img src="https://img.shields.io/badge/WhatsApp-@loay.mohamedd-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp" />
+  </a>
+  &nbsp;
   <a href="https://www.linkedin.com/in/loay-mohamed-621b7a33a">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+    <img src="https://img.shields.io/badge/LinkedIn-Loay%20Mohamed-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   &nbsp;
   <a href="https://github.com/Loayy1">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
-  </a>
-  &nbsp;
-  <a href="https://wa.me/loay.mohamedd">
-    <img src="https://img.shields.io/badge/WhatsApp-@loay.mohamedd-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"/>
+    <img src="https://img.shields.io/badge/GitHub-@Loayy1-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   </a>
 </p>
-
-| Channel | Contact Handle / Profile |
-| :--- | :--- |
-| 💬 **WhatsApp** | [@loay.mohamedd](https://wa.me/loay.mohamedd) |
-| 💼 **LinkedIn** | [Loay Mohamed](https://www.linkedin.com/in/loay-mohamed-621b7a33a) |
-| 🐙 **GitHub** | [@Loayy1](https://github.com/Loayy1) |
-
-<sub>Passionate about crafting polished, resilient mobile experiences with Clean Code & Pragmatic Architecture.</sub>
 
 </div>
 
 ---
 
 <div align="center">
-  <sub>⭐️ If you like this project or find the Clean Architecture implementation helpful, please give it a star! ⭐️</sub>
+  <sub>Avon Cosmetics Mobile Application • Built with Flutter & Dart</sub>
 </div>
